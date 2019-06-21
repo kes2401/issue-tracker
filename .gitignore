@@ -3,3 +3,4 @@
 __pycache__
 env.py
 issue_tracker_env/
+.vscode
