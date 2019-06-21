@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Keith Scully">
+    <meta name="keywords" content="UnicornAttractor,Issues,Bugs,Features,Tracker">
+    <meta name="description"
+        content="Issue tracker for the UnicornAttractor application. Raise new issues or request new features.">
+    <title>UnicornAttractor - Issue & Feature Tracker</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.css' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'lib/fontawesome/css/fontawesome.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">UnicornAttractor</a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01"
+                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse" id="navbarColor01" style="">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Stats</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tracker</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Log In</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h6>UnicornAttractor Issue and Feature Tracker</h6>
+                    <p>Issue tracker for the UnicornAttractor application. Raise new issues or request new features.</p>
+                </div>
+                <div class="col-12 col-md-6">
+                    <h6>Links</h6>
+                    <li><a href="#">Stats</a></li>
+                    <li><a href="#">Tracker</a></li>
+                    <li><a href="#">Sign Up</a></li>
+                    <li><a href="#">Log In</a></li>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2019 Keith Scully
+                <a href="https://github.com/kes2401/issue-tracker" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="{% static 'lib/jquery.js' %}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <!-- JS -->
+    <!-- <script src="{% static 'js/script.js' %}"></script> -->
+
+</body>
+
+</html>
