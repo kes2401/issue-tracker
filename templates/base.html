@@ -11,6 +11,8 @@
     <meta name="description"
         content="Issue tracker for the UnicornAttractor application. Raise new issues or request new features.">
     <title>UnicornAttractor - Issue & Feature Tracker</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.css' %}">
     <!-- Font Awesome -->
@@ -31,7 +33,7 @@
             </button>
 
             <div class="navbar-collapse collapse" id="navbarColor01">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
                     </li>
@@ -52,33 +54,42 @@
         </nav>
     </header>
 
-    <main>
-
-        {% block content %}
-        {% endblock %}
-
+    <main id="main">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
     </main>
 
-    <footer>
+    <footer class="bg-primary text-white pt-4">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <h6>UnicornAttractor Issue and Feature Tracker</h6>
-                    <p>Issue tracker for the UnicornAttractor application. Raise new issues or request new features.</p>
+                    <h5>UnicornAttractor Issue and Feature Tracker</h5>
+                    <p class="text-slim">Issue tracker for the UnicornAttractor application. Raise new issues or request
+                        new features.</p>
                 </div>
                 <div class="col-12 col-md-6">
-                    <h6>Links</h6>
-                    <li><a href="#">Stats</a></li>
-                    <li><a href="#">Tracker</a></li>
-                    <li><a href="#">Register</a></li>
-                    <li><a href="#">Login</a></li>
+                    <h5>Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Stats</a></li>
+                        <li><a href="#">Tracker</a></li>
+                        <li><a href="#">Register</a></li>
+                        <li><a href="#">Login</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="footer-copyright">
-            <div class="container">
-                © 2019 Keith Scully
-                <a href="https://github.com/kes2401/issue-tracker" target="_blank"><i class="fab fa-github"></i></a>
+        <div class="container text-light py-4">
+            <div class="row">
+                <div class="col-6">
+                    © 2019 Keith Scully
+                </div>
+                <div class="col-6">
+                    <a href="https://github.com/kes2401/issue-tracker" target="_blank"><i
+                            class="fab fa-github text-light"></i></a>
+                </div>
             </div>
         </div>
     </footer>

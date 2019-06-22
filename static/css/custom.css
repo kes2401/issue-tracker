@@ -1,0 +1,31 @@
+body {
+    background-color: #f5f5f5;
+}
+
+#main {
+    padding-top: 54px;
+    min-height: calc(100vh - 254px);
+    
+}
+
+.navbar-brand {
+    font-family: 'Questrial', sans-serif;
+    font-size: 1.3rem;
+}
+
+.fab {
+    font-size: 1.4rem;
+}
+
+.footer-links li a {
+    color: #eee;
+    font-weight: 300;
+}
+
+
+
+/* Utility Classes */
+
+.text-slim {
+    font-weight: 300;
+}
