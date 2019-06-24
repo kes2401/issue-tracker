@@ -35,7 +35,7 @@
             <div class="navbar-collapse collapse" id="navbarColor01">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'index' %}">Home<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Stats</a>
@@ -47,7 +47,10 @@
                         <a class="nav-link" href="#">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -55,6 +58,18 @@
     </header>
 
     <main id="main">
+        <div class="container">
+            {% if messages %}
+            <div>
+                {% for message in messages %}
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    You successfully logged out
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
         <div class="container">
             {% block content %}
             {% endblock %}
@@ -72,11 +87,12 @@
                 <div class="col-12 col-md-6">
                     <h5>Links</h5>
                     <ul class="list-unstyled footer-links">
-                        <li><a href="#">Home</a></li>
+                        <li><a href="{% url 'index' %}">Home</a></li>
                         <li><a href="#">Stats</a></li>
                         <li><a href="#">Tracker</a></li>
                         <li><a href="#">Register</a></li>
-                        <li><a href="#">Login</a></li>
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
                     </ul>
                 </div>
             </div>
