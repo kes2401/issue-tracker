@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<h3>Hello</h3>
+
+<img class="brand-logo d-block mx-auto" src="{% static 'img/UnicornAttractor.png' %}" alt="UnicornAttractor logo">
+<h3 class="text-primary text-center"><strong>Issue and Feature Tracker</strong></h3>
+
+<h4>Hello</h4>
 <p>This is the new issue tracker app.</p>
+
 {% endblock %}
