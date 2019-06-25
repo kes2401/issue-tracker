@@ -124,3 +124,5 @@ STATICFILES_DIRS = [
 ]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
