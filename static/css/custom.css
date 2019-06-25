@@ -17,6 +17,10 @@ body {
     max-width: 360px;
 }
 
+.fixed-width-btn {
+    width: 102px;
+}
+
 .fab {
     font-size: 1.4rem;
 }
