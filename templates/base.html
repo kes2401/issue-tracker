@@ -62,10 +62,17 @@
             {% if messages %}
             <div>
                 {% for message in messages %}
+                {% if message.tags == 'success' %}
                 <div class="alert alert-dismissible alert-success">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    You successfully logged out
+                    {{ message }}
                 </div>
+                {% elif message.tags == 'error' %}
+                <div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message }}
+                </div>
+                {% endif %}
                 {% endfor %}
             </div>
             {% endif %}

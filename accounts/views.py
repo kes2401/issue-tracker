@@ -1,10 +1,26 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
+from accounts.forms import UserLoginForm
 
 
 def login(request):
-    """ Return login page containing login form so that user can log into the application """
-    return render(request, 'login.html')
+    """ Return login page containing the login form """
+    if request.method == 'POST':
+        login_form = UserLoginForm(request.POST)
+        if login_form.is_valid():
+            user = auth.authenticate(username=request.POST['username'],
+                                     password=request.POST['password'])
+            print(messages)
+            if user:
+                auth.login(user=user, request=request)
+                messages.success(
+                    request, 'You have been succesfully logged in!')
+            else:
+                messages.error(
+                    request, 'Your username or password is incorrect')
+    else:
+        login_form = UserLoginForm()
+    return render(request, 'login.html', {'login_form': login_form})
 
 
 def logout(request):
