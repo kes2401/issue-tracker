@@ -34,28 +34,28 @@
 
             <div class="navbar-collapse collapse" id="navbarColor01">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'index' %}">Home<span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}"><strong>Home</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'stats' %}">Stats</a>
+                        <a class="nav-link" href="{% url 'stats' %}"><strong>Stats</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'tracker' %}">Tracker</a>
+                        <a class="nav-link" href="{% url 'tracker' %}"><strong>Tracker</strong></a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                        <a class="nav-link" href="{% url 'profile' %}"><strong>Profile</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        <a class="nav-link" href="{% url 'logout' %}"><strong>Logout</strong></a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        <a class="nav-link" href="{% url 'register' %}"><strong>Register</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        <a class="nav-link" href="{% url 'login' %}"><strong>Login</strong></a>
                     </li>
                     {% endif %}
                 </ul>
@@ -132,7 +132,7 @@
     <!-- Bootstrap JS -->
     <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.js' %}"></script>
     <!-- JS -->
-    <!-- <script src="{% static 'js/script.js' %}"></script> -->
+    <script src="{% static 'js/script.js' %}"></script>
 
 </body>
 
