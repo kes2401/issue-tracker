@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row detail-container py-5">
+    <div class="col-12 col-md-6">
+        <h2 class="text-center"><strong><em>Welcome, {{ user.username }}</em></strong></h2>
+        <img class="user-logo d-block mx-auto my-3" src="{% static 'img/user.png' %}" alt="user profile logo">
+        <p class="text-center text-muted ">Date joined: {{ user.date_joined }}</p>
+        <p class="text-center text-muted">Last login: {{ user.last_login }}</p>
+    </div>
+    <div class="col-10 offset-1 col-sm-6 offset-sm-0 col-md-5 offset-md-1 mt-4 mt-sm-2">
+        <h4 class="xs-center"><strong>Profile Details</strong></h4>
+        <p>Username: <span class="text-muted">{{ user.username }}</span></p>
+        {% if user.first_name %}
+        <p>First Name: <span class="text-muted">{{ user.first_name }}</span> <span><a href="#"
+                    class="btn btn-sm btn-info mx-3">Edit</a></span></p>
+        {% else %}
+        <p>First Name: <span class="text-muted"><em>Not yet provided</em></span> <span><a href="#"
+                    class="btn btn-sm btn-info mx-3">Edit</a></span></p>
+        {% endif %}
+        {% if user.last_name %}
+        <p>Last Name: <span class="text-muted">{{ user.last_name }}</span> <span><a href="#"
+                    class="btn btn-sm btn-info mx-3">Edit</a></span></p>
+        </p>
+        {% else %}
+        <p>Last Name: <span class="text-muted"><em>Not yet provided</em></span> <span><a href="#"
+                    class="btn btn-sm btn-info mx-3">Edit</a></span></p>
+        {% endif %}
+        <p>Email: <span class="text-muted">{{ user.email }}</span></p>
+        <p>Password: <span class="text-muted">********</span> <span><a href="#"
+                    class="btn btn-sm btn-success mx-2 mt-2 mt-md-0">Change
+                    Password</a></span></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 mt-4">
+        <h2 class="text-center my-3"><strong>Bug Reports</strong></h2>
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-active">
+                    <th scope="col" class="w-15">ID</th>
+                    <th scope="col" class="w-50">Bug Title</th>
+                    <th scope="col" class="w-25">Status</th>
+                    <th scope="col" class="w-10">View</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>Pellentesque non velit nec ligula</td>
+                    <td>Done</td>
+                    <td><a href="#" class="btn btn-sm btn-success mx-auto">View</a></td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>In nec dictum sapien, sit</td>
+                    <td>In Progress</td>
+                    <td><a href="#" class="btn btn-sm btn-success mx-auto">View</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 my-4">
+        <h2 class="text-center my-3"><strong>New Feature Orders</strong></h2>
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-active">
+                    <th scope="col" class="w-15">ID</th>
+                    <th scope="col" class="w-40">Feature Title</th>
+                    <th scope="col" class="w-25">Status</th>
+                    <th scope="col" class="w-10">Paid</th>
+                    <th scope="col" class="w-10">View</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>011</td>
+                    <td>Vivamus arcu libero, laoreet sed</td>
+                    <td>In Progress</td>
+                    <td>€ 50.00</td>
+                    <td><a href="#" class="btn btn-sm btn-success mx-auto">View</a></td>
+                </tr>
+                <tr>
+                    <td>012</td>
+                    <td>Duis convallis, tellus non fermentum</td>
+                    <td>Pending</td>
+                    <td>€ 75.00</td>
+                    <td><a href="#" class="btn btn-sm btn-success mx-auto">View</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="text-right mr-5"><strong>Total Paid: € 150.00</strong></p>
+    </div>
+</div>
+{% endblock %}

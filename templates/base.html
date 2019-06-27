@@ -45,6 +45,9 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                     </li>
                     {% else %}
@@ -101,6 +104,7 @@
                         <li><a href="#">Stats</a></li>
                         <li><a href="#">Tracker</a></li>
                         {% if user.is_authenticated %}
+                        <li><a href="{% url 'profile' %}">Profile</a></li>
                         <li><a href="{% url 'logout' %}">Logout</a></li>
                         {% else %}
                         <li><a href="{% url 'register' %}">Register</a></li>

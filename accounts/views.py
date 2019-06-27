@@ -18,7 +18,7 @@ def login(request):
                 auth.login(user=user, request=request)
                 messages.success(
                     request, 'You have been succesfully logged in!')
-                return redirect(reverse('index'))
+                return redirect(reverse('profile'))
             else:
                 messages.error(
                     request, 'Your username or password is incorrect')
@@ -56,3 +56,9 @@ def register(request):
     else:
         registration_form = UserRegistrationForm()
     return render(request, 'register.html', {'registration_form': registration_form})
+
+
+@login_required
+def profile(request):
+    """ Renders profile dashboard for logged in user """
+    return render(request, 'profile.html')
