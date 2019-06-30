@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load bootstrap_tags %}
 {% block content %}
 <div class="row">
     Request A New Feature
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Request New Feature">
+        {{ form | as_bootstrap }}
+        <input type="submit" class="btn btn-success" value="Request New Feature">
     </form>
 </div>
 {% endblock %}
