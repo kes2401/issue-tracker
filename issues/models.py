@@ -19,6 +19,7 @@ class Issue(models.Model):
     author = models.ForeignKey(
         User, default='Anonymous', on_delete=models.CASCADE)
     status = models.CharField(max_length=11, choices=STATUS_CHOICES)
+    amount_paid = models.DecimalField(max_digits=8, decimal_places=2)
 
     def __str__(self):
         return self.title
