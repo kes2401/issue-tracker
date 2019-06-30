@@ -2,5 +2,8 @@
 {% block content %}
 <div class="row">
     This is the Issue Tracker page
+    <a href="{% url 'create_bug' %}" class="btn btn-success mx-2">Report New Bug</a>
+    <a href="{% url 'create_feature' %}" class="btn btn-success mx-2">Request New Feature</a>
 </div>
+
 {% endblock %}
