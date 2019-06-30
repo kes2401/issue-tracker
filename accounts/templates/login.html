@@ -2,13 +2,14 @@
 {% load bootstrap_tags %}
 {% block content %}
 
-<h1>Login page</h1>
+<div class="container">
+    <h1>Login page</h1>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ login_form | as_bootstrap }}
-    <input type="submit" value="Login">
-</form>
-<p><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
-
+    <form method="POST">
+        {% csrf_token %}
+        {{ login_form | as_bootstrap }}
+        <input type="submit" value="Login">
+    </form>
+    <p><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
+</div>
 {% endblock %}
