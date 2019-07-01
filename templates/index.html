@@ -2,21 +2,26 @@
 {% load static %}
 
 {% block content %}
-<div class="my-5">
-    <img class="brand-logo d-block mx-auto" src="{% static 'img/UnicornAttractor.png' %}" alt="UnicornAttractor logo">
-    <h3 class="text-primary text-center"><strong>Issue and Feature Tracker</strong></h3>
-    {% if not user.is_authenticated %}
-    <div class="d-flex justify-content-center my-5">
-        <a href="{% url 'login' %}" class="btn btn-lg btn-success mx-2 fixed-width-btn">Login</a>
-        <a href="{% url 'register' %}" class="btn btn-lg btn-primary mx-2 fixed-width-btn">Register</a>
+<div class="container-fluid">
+    <div class="my-5 py-2">
+        <img class="brand-logo d-block mx-auto" src="{% static 'img/UnicornAttractor.png' %}"
+            alt="UnicornAttractor logo">
+        <h3 class="text-primary text-center"><strong>Issue and Feature Tracker</strong></h3>
+        {% if not user.is_authenticated %}
+        <div class="d-flex justify-content-center my-5">
+            <a href="{% url 'login' %}" class="btn btn-lg btn-success mx-2 fixed-width-btn">Login</a>
+            <a href="{% url 'register' %}" class="btn btn-lg btn-primary mx-2 fixed-width-btn">Register</a>
+        </div>
     </div>
 </div>
 {% endif %}
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-12 bg-white py-5 my-5">
-            <p class="text-center col-md-10 offset-md-1 my-5">While everyone knows that UnicornAttractor is very quickly
+    <div class="row bg-white">
+        <div class="col-12 my-5">
+            <p class="text-center col-md-10 offset-md-1 my-5 main-text">While everyone knows that UnicornAttractor is
+                very
+                quickly
                 becoming one of the most popular apps on the web today, with a wide variety of cool features fulfiling
                 the needs of a vast number
                 of users, we still want to make our app better and better. This is the Issue Tracker app associated with
@@ -26,7 +31,9 @@
                 have reported. Let us make this better for you!</p>
         </div>
     </div>
-    <div class="row">
+</div>
+<div class="container-fluid">
+    <div class="row py-3">
         <div class="col-12 col-md-6 my-5 text-center">
             <img class="rounded-circle" src="{% static 'img/report.png' %}" alt="Tracker feature image">
             <h3 class="my-3">Tracker</h3>
@@ -43,4 +50,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
