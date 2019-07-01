@@ -50,6 +50,10 @@ a.nav-link {
     background-color: #fff;
 }
 
+div p.main-text {
+    line-height: 1.8rem;
+    word-spacing: 0.1rem;
+}
 
 
 
