@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from .forms import CreateIssue
 
@@ -18,6 +19,11 @@ def create_bug(request):
             instance.issue_type = 'bug'
             instance.author = request.user
             instance.save()
+            messages.success(
+                request, 'You have successfully report a new bug.')
+        else:
+            messages.error(
+                request, 'Something went wrong. Please try again.')
         return redirect('tracker')
     else:
         form = CreateIssue()
@@ -34,6 +40,11 @@ def create_feature(request):
             instance.issue_type = 'feature'
             instance.author = request.user
             instance.save()
+            messages.success(
+                request, 'You have successfully submitted a new feature request.')
+        else:
+            messages.error(
+                request, 'Something went wrong. Please try again.')
         return redirect('tracker')
     else:
         form = CreateIssue()
