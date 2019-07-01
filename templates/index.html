@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="my-5 py-2">
+    <div class="my-5 py-3">
         <img class="brand-logo d-block mx-auto" src="{% static 'img/UnicornAttractor.png' %}"
             alt="UnicornAttractor logo">
         <h3 class="text-primary text-center"><strong>Issue and Feature Tracker</strong></h3>
@@ -12,9 +12,10 @@
             <a href="{% url 'login' %}" class="btn btn-lg btn-success mx-2 fixed-width-btn">Login</a>
             <a href="{% url 'register' %}" class="btn btn-lg btn-primary mx-2 fixed-width-btn">Register</a>
         </div>
+        {% endif %}
     </div>
 </div>
-{% endif %}
+
 
 <div class="container-fluid">
     <div class="row bg-white">
