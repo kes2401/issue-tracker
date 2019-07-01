@@ -1,6 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import CreateIssue
-from django.contrib.auth.decorators import login_required
 
 
 def tracker(request):
@@ -13,8 +13,11 @@ def create_bug(request):
     """ Render page providing form to user to create a new bug """
     if request.method == 'POST':
         form = CreateIssue(request.POST)
-        # set issue type to 'bug'
-        # save to db
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.issue_type = 'bug'
+            instance.author = request.user
+            instance.save()
         return redirect('tracker')
     else:
         form = CreateIssue()
@@ -26,8 +29,11 @@ def create_feature(request):
     """ Render page providing form to user to create a new feature request """
     if request.method == 'POST':
         form = CreateIssue(request.POST)
-        # set issue type to 'feature'
-        # save to db
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.issue_type = 'feature'
+            instance.author = request.user
+            instance.save()
         return redirect('tracker')
     else:
         form = CreateIssue()

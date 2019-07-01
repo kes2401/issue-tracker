@@ -18,8 +18,10 @@ class Issue(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
         User, default='Anonymous', on_delete=models.CASCADE)
-    status = models.CharField(max_length=11, choices=STATUS_CHOICES)
-    amount_paid = models.DecimalField(max_digits=8, decimal_places=2)
+    status = models.CharField(
+        max_length=11, choices=STATUS_CHOICES, default='pending')
+    amount_paid = models.DecimalField(
+        max_digits=8, decimal_places=2, default=0.00)
 
     def __str__(self):
         return self.title
