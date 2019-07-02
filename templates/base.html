@@ -70,24 +70,24 @@
     </header>
 
     <main id="main">
-        <div class="container">
-            {% if messages %}
-            <div>
+        <div class="container mt-3">
+            <div class="messages-container">
+                {% if messages %}
                 {% for message in messages %}
                 {% if message.tags == 'success' %}
-                <div class="alert alert-dismissible alert-success">
+                <div class="alert alert-dismissible alert-success mb-0">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     {{ message }}
                 </div>
                 {% elif message.tags == 'error' %}
-                <div class="alert alert-dismissible alert-danger">
+                <div class="alert alert-dismissible alert-danger mb-0">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     {{ message }}
                 </div>
                 {% endif %}
                 {% endfor %}
+                {% endif %}
             </div>
-            {% endif %}
         </div>
         {% block content %}
         {% endblock %}
