@@ -52,3 +52,13 @@ def create_feature(request):
     else:
         form = CreateIssue()
     return render(request, 'create_feature.html', {'form': form})
+
+
+def bug_detail(request, id):
+    bug = Issue.objects.get(pk=id)
+    return render(request, 'issue_detail.html', {'issue': bug})
+
+
+def feature_detail(request, id):
+    feature = Issue.objects.get(pk=id)
+    return render(request, 'issue_detail.html', {'issue': feature})

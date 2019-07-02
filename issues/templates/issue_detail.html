@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div>
+            <h3>Issue Detail</h3>
+            <p>ID: #{{ issue.pk }}</p>
+            <p>Title: {{ issue.title }}</p>
+            <p>Description: {{ issue.description }}</p>
+            <p>Type: {{ issue.issue_type }}</p>
+            <p>Date Created: {{ issue.date_created }}</p>
+            <p>Status: {{ issue.status }}</p>
+            <p>Author: {{ issue.author }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
