@@ -23,7 +23,7 @@ def create_bug(request):
             instance.author = request.user
             instance.save()
             messages.success(
-                request, 'You have successfully report a new bug.')
+                request, 'You have successfully reported a new bug.')
         else:
             messages.error(
                 request, 'Something went wrong. Please try again.')
