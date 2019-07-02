@@ -12,6 +12,10 @@
             <a href="{% url 'login' %}" class="btn btn-lg btn-success mx-2 fixed-width-btn">Login</a>
             <a href="{% url 'register' %}" class="btn btn-lg btn-primary mx-2 fixed-width-btn">Register</a>
         </div>
+        {% else %}
+        <div class="d-flex justify-content-center my-5">
+            <a href="{% url 'profile' %}" class="btn btn-lg btn-info mx-2 fixed-width-btn">Profile</a>
+        </div>
         {% endif %}
     </div>
 </div>
@@ -20,16 +24,12 @@
 <div class="container-fluid">
     <div class="row bg-white">
         <div class="col-12 my-5">
-            <p class="text-center col-md-10 offset-md-1 my-5 main-text">While everyone knows that UnicornAttractor is
-                very
-                quickly
-                becoming one of the most popular apps on the web today, with a wide variety of cool features fulfiling
-                the needs of a vast number
-                of users, we still want to make our app better and better. This is the Issue Tracker app associated with
-                our UnicornAttractor app that
-                allows you to report new bugs, request new features and interact with those bugs and features that other
-                users
-                have reported. Let us make this better for you!</p>
+            <p class="text-center col-md-10 offset-md-1 my-5 main-text">While everyone knows that
+                UnicornAttractor is very quickly becoming one of the most popular apps on the web today, with a wide
+                variety of great features fulfiling the needs of a vast number of users. But we still want to make our
+                app better and better. This is the Issue Tracker application for UnicornAttractor that allows you to
+                report new bugs and request new features. You can also support bugs and features submitted by other
+                users. Let us make UnicornAttractor better for you!</p>
         </div>
     </div>
 </div>
