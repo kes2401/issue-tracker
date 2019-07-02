@@ -55,6 +55,11 @@ div p.main-text {
     word-spacing: 0.1rem;
 }
 
+.issue-badge-pill {
+    height: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
 
 
 /* Utility Classes */

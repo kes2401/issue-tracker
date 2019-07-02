@@ -2,16 +2,19 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from .forms import CreateIssue
+from .models import Issue
 
 
 def tracker(request):
     """ Renders the Tracker page that tracks and manages all bug reports and feature requests """
-    return render(request, 'tracker.html')
+    bugs = Issue.objects.filter(issue_type='bug')
+    features = Issue.objects.filter(issue_type='feature')
+    return render(request, 'tracker.html', {'bugs': bugs, 'features': features})
 
 
 # @login_required
 def create_bug(request):
-    """ Render page providing form to user to create a new bug """
+    """ Render page providing form to user to report a new bug """
     if request.method == 'POST':
         form = CreateIssue(request.POST)
         if form.is_valid():

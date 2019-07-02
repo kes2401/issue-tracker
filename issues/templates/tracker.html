@@ -1,10 +1,117 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
+<div class="container mb-4">
+
+    <h2 class="text-center py-4"><strong>Issue Tracker</strong></h2>
+
     <div class="row">
-        This is the Issue Tracker page
-        <a href="{% url 'create_bug' %}" class="btn btn-success mx-2">Report New Bug</a>
-        <a href="{% url 'create_feature' %}" class="btn btn-success mx-2">Request New Feature</a>
+        <div class="col-12 col-md-6">
+            <ul class="list-group d-flex flex-column">
+                <li class="list-group-item list-group-item-secondary">
+                    <div class="d-flex flex-row text-center">
+                        <h4 class="text-dark"><strong>Bugs</strong></h4>
+                        <div class="ml-auto pt-2">
+                            <a href="#" class="mx-1 text-dark text-decoration-none">Search</a>
+                            <a href="#" class="mx-3 text-dark text-decoration-none">Status</a>
+                            <a href="#" class="mx-1 text-dark text-decoration-none">Sort</a>
+                        </div>
+                    </div>
+                </li>
+                {% for bug in bugs %}
+                <li class="list-group-item list-group-item-action">
+                    <div class="d-flex flex-row">
+                        <div>
+                            <i class="fas fa-bug mr-2 border border-info text-info rounded-circle p-1"></i>
+                        </div>
+                        <h6><a href="#"
+                                class="text-decoration-none text-secondary font-weight-bold"><strong>{{ bug.title }}</strong></a>
+                        </h6>
+                        <div>
+                            {% if bug.status == 'pending' %}
+                            <span class="badge badge-warning badge-pill issue-badge-pill ml-5">{{ bug.status }}</span>
+                            {% elif bug.status == 'in progress' %}
+                            <span class="badge badge-success badge-pill issue-badge-pill ml-5">{{ bug.status }}</span>
+                            {% else %}
+                            <span class="badge badge-info badge-pill issue-badge-pill ml-5">{{ bug.status }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="ml-auto">
+                            <span class="badge badge-light badge-pill issue-badge-pill"><i class="far fa-thumbs-up"></i>
+                                14</span>
+                            <span class="badge badge-light badge-pill issue-badge-pill"><i class="far fa-comment"></i>
+                                7</span>
+                        </div>
+                    </div>
+                    <span class="text-muted">Created on {{ bug.date_created }} by {{ bug.author }}</span>
+                </li>
+                {% empty %}
+                <li class="list-group-item">
+                    <div class="text-center">
+                        <p class="pt-2">There are no reported bugs open.</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="d-flex">
+                <a href="{% url 'create_bug' %}" class="btn btn-success my-2 ml-auto">New Bug</a>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <ul class="list-group d-flex flex-column">
+                <li class="list-group-item list-group-item-secondary">
+                    <div class="d-flex flex-row text-center">
+                        <h4 class="text-dark"><strong>Features</strong></h4>
+                        <div class="ml-auto pt-2">
+                            <a href="#" class="mx-1 text-dark text-decoration-none">Search</a>
+                            <a href="#" class="mx-3 text-dark text-decoration-none">Status</a>
+                            <a href="#" class="mx-1 text-dark text-decoration-none">Sort</a>
+                        </div>
+                    </div>
+                </li>
+                {% for feature in features %}
+                <li class="list-group-item list-group-item-action">
+                    <div class="d-flex flex-row">
+                        <div>
+                            <i class="fas fa-plus mr-2 border border-success text-success rounded-circle p-1"></i>
+                        </div>
+                        <h6>
+                            <a href="#"
+                                class="text-decoration-none text-secondary font-weight-bold"><strong>{{ feature.title }}</strong></a>
+                        </h6>
+                        <div>
+                            {% if feature.status == 'pending' %}
+                            <span
+                                class="badge badge-warning badge-pill issue-badge-pill ml-5">{{ feature.status }}</span>
+                            {% elif feature.status == 'in progress' %}
+                            <span
+                                class="badge badge-success badge-pill issue-badge-pill ml-5">{{ feature.status }}</span>
+                            {% else %}
+                            <span class="badge badge-info badge-pill issue-badge-pill ml-5">{{ feature.status }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="ml-auto">
+                            <span class="badge badge-light badge-pill issue-badge-pill"><i class="far fa-thumbs-up"></i>
+                                14</span>
+                            <span class="badge badge-light badge-pill issue-badge-pill"><i class="far fa-comment"></i>
+                                7</span>
+                        </div>
+                    </div>
+                    <span class="text-muted">Created on {{ feature.date_created }} by {{ feature.author }}</span>
+                </li>
+                {% empty %}
+                <li class="list-group-item">
+                    <div class="text-center">
+                        <p class="pt-2">There are no new feature requests open.</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="d-flex">
+                <a href="{% url 'create_feature' %}" class="btn btn-success my-2 ml-auto">New Feature</a>
+            </div>
+        </div>
     </div>
+
 </div>
 {% endblock %}
