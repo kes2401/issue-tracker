@@ -61,6 +61,10 @@ div p.main-text {
     font-weight: 500;
 }
 
+.heading-border {
+    border-color: #c3c3c3 !important;
+}
+
 
 /* Utility Classes */
 
