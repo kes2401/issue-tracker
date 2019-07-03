@@ -39,11 +39,11 @@
                         </h6>
                         <div>
                             {% if bug.status == 'pending' %}
-                            <span class="badge badge-warning badge-pill issue-badge-pill ml-5">{{ bug.status }}</span>
+                            <span class="badge badge-warning badge-pill issue-badge-pill ml-5">Pending</span>
                             {% elif bug.status == 'in progress' %}
-                            <span class="badge badge-success badge-pill issue-badge-pill ml-5">{{ bug.status }}</span>
+                            <span class="badge badge-success badge-pill issue-badge-pill ml-5">In Progress</span>
                             {% else %}
-                            <span class="badge badge-info badge-pill issue-badge-pill ml-5">{{ bug.status }}</span>
+                            <span class="badge badge-info badge-pill issue-badge-pill ml-5">Closed</span>
                             {% endif %}
                         </div>
                         <div class="ml-auto">
@@ -95,13 +95,11 @@
                         </h6>
                         <div>
                             {% if feature.status == 'pending' %}
-                            <span
-                                class="badge badge-warning badge-pill issue-badge-pill ml-5">{{ feature.status }}</span>
+                            <span class="badge badge-warning badge-pill issue-badge-pill ml-5">Pending</span>
                             {% elif feature.status == 'in progress' %}
-                            <span
-                                class="badge badge-success badge-pill issue-badge-pill ml-5">{{ feature.status }}</span>
+                            <span class="badge badge-success badge-pill issue-badge-pill ml-5">In Progress</span>
                             {% else %}
-                            <span class="badge badge-info badge-pill issue-badge-pill ml-5">{{ feature.status }}</span>
+                            <span class="badge badge-info badge-pill issue-badge-pill ml-5">Closed</span>
                             {% endif %}
                         </div>
                         <div class="ml-auto">
