@@ -77,6 +77,14 @@ div p.main-text {
     border-color: #c3c3c3 !important;
 }
 
+.fa-chevron-down:before {
+    color: #ccc;
+}
+
+.vote-btn {
+    cursor: pointer;
+}
+
 
 /* Utility Classes */
 

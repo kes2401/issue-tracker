@@ -1,16 +1,111 @@
 {% extends 'base.html' %}
 {% block content %}
+
+
 <div class="container">
     <div class="row">
-        <div>
-            <h3>Issue Detail</h3>
-            <p>ID: #{{ issue.pk }}</p>
-            <p>Title: {{ issue.title }}</p>
-            <p>Description: {{ issue.description }}</p>
-            <p>Type: {{ issue.issue_type }}</p>
-            <p>Date Created: {{ issue.date_created }}</p>
-            <p>Status: {{ issue.status }}</p>
-            <p>Author: {{ issue.author }}</p>
+        <!-- Issue Card -->
+        <div class="card border-dark mb-1 w-75 mx-auto">
+            <div class="card-header">
+                <div class="row py-2">
+                    <div class="col-12 col-md-6">
+                        <h4 class="card-title">{{ issue.title }}</h4>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        {% if issue.status == 'done' %}
+                        <span class="badge badge-danger p-2">This issue is closed - no more comments or upvotes
+                            allowed!</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div>
+                        {% if issue.issue_type == 'bug' %}
+                        <span class="d-block text-muted">#{{ issue.pk }} - Bug</span>
+                        {% else %}
+                        <span class="d-block text-muted">#{{ issue.pk }} - New Feature</span>
+                        {% endif %}
+                    </div>
+                    <div class="ml-auto">
+                        <i class="far fa-comment"></i>
+                        <span class="text-secondary"> Comments </span>
+                        <span class="badge badge-light badge-pill issue-badge-pill">5</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <p class="card-text mt-2 mb-4">{{ issue.description }}</p>
+                <hr>
+                <h6 class="card-title">Status</h6>
+                {% if issue.status == 'pending' %}
+                <span class="badge badge-warning badge-pill issue-badge-pill">Pending</span>
+                {% elif issue.status == 'in progress' %}
+                <span class="badge badge-success badge-pill issue-badge-pill">In Progress</span>
+                {% else %}
+                <span class="badge badge-info badge-pill issue-badge-pill">Closed</span>
+                {% endif %}
+                <hr>
+                <div class="d-flex">
+                    <div class="col-12 col-md-6 pl-5">
+                        {% if issue.status == 'done' %}
+                        <a class="disabled"><i class="far fa-thumbs-up fa-2x text-muted"></i></a>
+                        {% else %}
+                        <a class="vote-btn" href="javascript:void(0)"><i
+                                class="far fa-thumbs-up fa-2x text-muted"></i></a>
+                        {% endif %}
+                        <span>4</span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        {% if issue.issue_type == 'bug' %}
+                        <p class="text-muted text-right mb-0">Reported by {{ issue.author }} on {{ issue.date_created }}
+                        </p>
+                        {% else %}
+                        <p class="text-muted text-right mb-0">Requested by {{ issue.author }} on
+                            {{ issue.date_created }}</p>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row">
+        <!-- Comment cards -->
+        <!-- card start -->
+        <div class="w-75 mx-auto pl-4">
+            <i class="fa fa-chevron-down fa-2x text-black-50"></i>
+        </div>
+        <div class="card heading-border mb-3 w-75 mx-auto">
+            <div class="card-header">
+                <p class="text-muted pt-1 mb-0">Username</p>
+            </div>
+            <div class="card-body">
+                <p class="card-text mt-2 mb-4">Comment text ................</p>
+                <hr>
+                <p class="text-muted text-right mb-0">Commented on [comment_date]</p>
+            </div>
+        </div>
+        <!-- card end -->
+
+        <!-- if no comments -->
+        <!-- <div class="w-75 mx-auto list-group-item my-3">
+            <div class="text-center">
+                <p class="text-secondary mb-0 py-2">There are no comments to show.</p>
+            </div>
+        </div> -->
+
+    </div>
+    <div class="row">
+        <div class="w-75 mx-auto d-flex justify-content-end">
+            {% if issue.status == 'done' %}
+            <button class="btn btn-success" disabled aria-disabled="true">New Comment</button>
+            {% else %}
+            <button class="btn btn-success">New Comment</button>
+            {% endif %}
         </div>
     </div>
 </div>
