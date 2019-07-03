@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block title %}
+- Issue Detail
+{% endblock %}
 {% block content %}
 
 
@@ -73,7 +76,7 @@
 </div>
 
 <div class="container mb-5">
-    <div class="row">
+    <div class="row" id="comment-container">
         <!-- Comment cards -->
         <!-- card start -->
         <div class="w-75 mx-auto pl-4">
@@ -100,13 +103,21 @@
 
     </div>
     <div class="row">
-        <div class="w-75 mx-auto d-flex justify-content-end">
-            {% if issue.status == 'done' %}
-            <button class="btn btn-success" disabled aria-disabled="true">New Comment</button>
-            {% else %}
-            <button class="btn btn-success">New Comment</button>
-            {% endif %}
+        {% if issue.status == 'done' %}
+        <div class="w-75 mx-auto border my-3">
+            <input type="textarea" class="w-100 p-3" placeholder="Leave a comment..." disabled>
         </div>
+        <div class="w-75 mx-auto d-flex justify-content-end">
+            <button class="btn btn-success" disabled aria-disabled="true">Comment</button>
+        </div>
+        {% else %}
+        <div class="w-75 mx-auto border my-3">
+            <input type="textarea" class="w-100 p-3" id="new-comment-field" placeholder="Leave a comment...">
+        </div>
+        <div class="w-75 mx-auto d-flex justify-content-end">
+            <button type="submit" class="btn btn-success" id="new-comment-btn">Comment</button>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
