@@ -80,7 +80,7 @@
     <div class="row" id="comment-container">
         <!-- Comment cards -->
         <!-- card start -->
-        <div class="w-75 mx-auto pl-4">
+        <div class="comment-card w-75 mx-auto pl-4">
             <i class="fa fa-chevron-down fa-2x text-black-50"></i>
         </div>
         <div class="card heading-border mb-3 w-75 mx-auto">
@@ -118,7 +118,7 @@
         </div>
         <div class="w-75 mx-auto d-flex justify-content-end">
             <button class="btn btn-success disabled" id="new-comment-btn" data-issue-id="{{ issue.pk }}"
-                data-user-id="{{ user.pk }}" disabled>Comment</button>
+                data-user="{{ user }}" disabled>Comment</button>
         </div>
         {% endif %}
     </div>

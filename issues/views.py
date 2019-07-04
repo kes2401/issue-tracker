@@ -76,4 +76,6 @@ def add_comment(request, id):
         new_comment.user = currrent_user
         new_comment.issue = current_issue
         new_comment.save()
-        return HttpResponse('done')
+        savetime = IssueComment.objects.get(
+            user=request.user, comment=request.POST.get('comment'), issue=current_issue.pk)
+        return HttpResponse(savetime.date_published)
