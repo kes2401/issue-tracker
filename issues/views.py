@@ -65,7 +65,8 @@ def bug_detail(request, id):
 @ensure_csrf_cookie
 def feature_detail(request, id):
     feature = Issue.objects.get(pk=id)
-    return render(request, 'issue_detail.html', {'issue': feature})
+    comments = IssueComment.objects.all().filter(issue=id)
+    return render(request, 'issue_detail.html', {'issue': feature, 'comments': comments})
 
 
 def add_comment(request, id):
