@@ -38,6 +38,7 @@
 
             </div>
             <div class="card-body">
+                <h6 class="card-title">Issue Description</h6>
                 <p class="card-text mt-2 mb-4">{{ issue.description }}</p>
                 <hr>
                 <h6 class="card-title">Status</h6>
@@ -112,10 +113,12 @@
         </div>
         {% else %}
         <div class="w-75 mx-auto border my-3">
-            <input type="textarea" class="w-100 p-3" id="new-comment-field" placeholder="Leave a comment...">
+            <input type="textarea" class="w-100 p-3" id="new-comment-field" placeholder="Leave a comment..." rows="5"
+                maxlength="624">
         </div>
         <div class="w-75 mx-auto d-flex justify-content-end">
-            <button type="submit" class="btn btn-success" id="new-comment-btn">Comment</button>
+            <button class="btn btn-success disabled" id="new-comment-btn" data-issue-id="{{ issue.pk }}"
+                data-user-id="{{ user.pk }}" disabled>Comment</button>
         </div>
         {% endif %}
     </div>

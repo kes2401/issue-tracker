@@ -1,8 +1,11 @@
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from .forms import CreateIssue
-from .models import Issue
+from .models import Issue, IssueComment
+from django.http import HttpResponse
 
 
 def tracker(request):
@@ -59,6 +62,18 @@ def bug_detail(request, id):
     return render(request, 'issue_detail.html', {'issue': bug})
 
 
+@ensure_csrf_cookie
 def feature_detail(request, id):
     feature = Issue.objects.get(pk=id)
     return render(request, 'issue_detail.html', {'issue': feature})
+
+
+def add_comment(request, id):
+    if request.method == 'POST':
+        new_comment = IssueComment(comment=request.POST.get('comment'))
+        currrent_user = User.objects.get(username=request.user)
+        current_issue = Issue.objects.get(pk=id)
+        new_comment.user = currrent_user
+        new_comment.issue = current_issue
+        new_comment.save()
+        return HttpResponse('done')
