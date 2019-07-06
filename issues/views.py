@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from .forms import CreateIssue
-from .models import Issue, IssueComment
+from .models import Issue, IssueComment, IssueVote
 from django.http import HttpResponse
 
 
@@ -68,7 +68,25 @@ def bug_detail(request, id):
 def feature_detail(request, id):
     feature = Issue.objects.get(pk=id)
     comments = IssueComment.objects.all().filter(issue=id)
-    return render(request, 'issue_detail.html', {'issue': feature, 'comments': comments})
+    votes = IssueVote.objects.all().filter(issue=id)
+    votes_count = votes.count()
+    for vote in votes:
+        if vote.user == request.user:
+            user_vote = True
+            break
+    else:
+        user_vote = False
+    return render(request, 'issue_detail.html', {'issue': feature, 'comments': comments, 'votes_count': votes_count, 'user_vote': user_vote})
+
+
+@ensure_csrf_cookie
+def bug_detail(request, id):
+    bug = Issue.objects.get(pk=id)
+    comments = IssueComment.objects.all().filter(issue=id)
+    votes = IssueVote.objects.all().filter(issue=id)
+    votes_count = votes.count()
+
+    return render(request, 'issue_detail.html', {'issue': bug, 'comments': comments, 'votes_count': votes_count})
 
 
 def add_comment(request, id):
@@ -82,3 +100,22 @@ def add_comment(request, id):
         savetime = IssueComment.objects.get(
             user=request.user, comment=request.POST.get('comment'), issue=current_issue.pk)
         return HttpResponse(savetime.date_published)
+
+
+def add_vote(request, id):
+    if request.method == 'POST':
+        new_vote = IssueVote()
+        currrent_user = User.objects.get(username=request.user)
+        current_issue = Issue.objects.get(pk=id)
+        new_vote.issue = current_issue
+        new_vote.user = currrent_user
+        new_vote.save()
+        return HttpResponse('added')
+
+
+def remove_vote(request, id):
+    if request.method == 'POST':
+        currrent_user = User.objects.get(username=request.user)
+        current_issue = Issue.objects.get(pk=id)
+        IssueVote.objects.get(user=currrent_user, issue=current_issue).delete()
+        return HttpResponse('removed')

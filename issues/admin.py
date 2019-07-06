@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Issue, IssueComment, IssueVotes
+from .models import Issue, IssueComment, IssueVote
 
 # Register your models here.
 
 admin.site.register(Issue)
 admin.site.register(IssueComment)
-admin.site.register(IssueVotes)
+admin.site.register(IssueVote)

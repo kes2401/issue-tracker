@@ -37,9 +37,9 @@ class IssueComment(models.Model):
         return self.comment
 
 
-class IssueVotes(models.Model):
+class IssueVote(models.Model):
     issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.issue
+        return self.issue.title

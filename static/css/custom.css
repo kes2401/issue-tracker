@@ -85,6 +85,10 @@ div p.main-text {
     cursor: pointer;
 }
 
+.fas.fa-thumbs-up:before {
+    color: #17a2b8;
+}
+
 
 /* Utility Classes */
 

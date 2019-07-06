@@ -75,6 +75,66 @@ $(document).ready(function () {
 
 
 
+        // Add/Remove votes
+        $('.vote-btn').click(function () {
+
+            let voteStatus = $('.vote-btn')[0].dataset.voteStatus;
+            let issueID = Number.parseInt($('#new-comment-btn')[0].dataset.issueId);
+
+
+            if (voteStatus == 'false') {
+                $('.vote-btn')[0].dataset.voteStatus = 'true';
+                $('.vote-btn').html('<i class="fas fa-thumbs-up fa-2x text-muted"></i>');
+                $('.vote-btn').addClass('text-info');
+                postVote('add');
+            } else {
+                $('.vote-btn')[0].dataset.voteStatus = 'false';
+                $('.vote-btn').html('<i class="far fa-thumbs-up fa-2x text-muted"></i>');
+                $('.vote-btn').removeClass('text-info');
+                postVote('remove');
+            }
+
+
+
+            function postVote(status) {
+                if (status === 'remove') {
+                    requestStr = `/issues/tracker/issue_detail/${issueID}/remove_vote`;
+                } else {
+                    requestStr = `/issues/tracker/issue_detail/${issueID}/add_vote`;
+                }
+
+                $.post({
+                    url: requestStr,
+                    headers: {
+                        'X-CSRFToken': csrftoken
+                    },
+                    success: function (response) {
+                        updateVoteCount(response);
+                    },
+                    error: function (_xhr, err) {
+                        console.log(err);
+                    }
+                });
+            }
+
+            function updateVoteCount(status) {
+                if (status === 'added') {
+                    let voteCount = Number.parseInt($('#vote-count').text());
+                    voteCount += 1;
+                    $('#vote-count').text(voteCount);
+                } else if (status === 'removed') {
+                    let voteCount = Number.parseInt($('#vote-count').text());
+                    voteCount -= 1;
+                    $('#vote-count').text(voteCount);
+                }
+            }
+
+        })
+
+
+
+
+
         // get csrf token from cookie
         function getCookie(name) {
             let cookieValue = null;
@@ -82,7 +142,6 @@ $(document).ready(function () {
                 let cookies = document.cookie.split(';');
                 for (let i = 0; i < cookies.length; i++) {
                     let cookie = cookies[i].trim();
-                    // Does this cookie string begin with the name we want?
                     if (cookie.substring(0, name.length + 1) === (name + '=')) {
                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                         break;
