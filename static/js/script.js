@@ -67,6 +67,8 @@ $(document).ready(function () {
                                     </div>
                                 </div>`;
                 $('#comment-container').append(newCommentStr);
+                let commentCount = Number.parseInt(document.getElementById('comments-count').innerText) + 1;
+                document.getElementById('comments-count').innerText = commentCount;
             }
 
         });
