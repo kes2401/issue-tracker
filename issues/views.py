@@ -61,7 +61,15 @@ def create_feature(request):
 def bug_detail(request, id):
     bug = Issue.objects.get(pk=id)
     comments = IssueComment.objects.all().filter(issue=id)
-    return render(request, 'issue_detail.html', {'issue': bug, 'comments': comments})
+    votes = IssueVote.objects.all().filter(issue=id)
+    votes_count = votes.count()
+    for vote in votes:
+        if vote.user == request.user:
+            user_vote = True
+            break
+    else:
+        user_vote = False
+    return render(request, 'issue_detail.html', {'issue': bug, 'comments': comments, 'votes_count': votes_count, 'user_vote': user_vote})
 
 
 @ensure_csrf_cookie
@@ -77,16 +85,6 @@ def feature_detail(request, id):
     else:
         user_vote = False
     return render(request, 'issue_detail.html', {'issue': feature, 'comments': comments, 'votes_count': votes_count, 'user_vote': user_vote})
-
-
-@ensure_csrf_cookie
-def bug_detail(request, id):
-    bug = Issue.objects.get(pk=id)
-    comments = IssueComment.objects.all().filter(issue=id)
-    votes = IssueVote.objects.all().filter(issue=id)
-    votes_count = votes.count()
-
-    return render(request, 'issue_detail.html', {'issue': bug, 'comments': comments, 'votes_count': votes_count})
 
 
 def add_comment(request, id):
