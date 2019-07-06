@@ -57,9 +57,11 @@ def create_feature(request):
     return render(request, 'create_feature.html', {'form': form})
 
 
+@ensure_csrf_cookie
 def bug_detail(request, id):
     bug = Issue.objects.get(pk=id)
-    return render(request, 'issue_detail.html', {'issue': bug})
+    comments = IssueComment.objects.all().filter(issue=id)
+    return render(request, 'issue_detail.html', {'issue': bug, 'comments': comments})
 
 
 @ensure_csrf_cookie

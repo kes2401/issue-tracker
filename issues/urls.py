@@ -7,5 +7,5 @@ urlpatterns = [
     path('tracker/create_feature', create_feature, name='create_feature'),
     path('tracker/bug_detail/<id>/', bug_detail, name='bug_detail'),
     path('tracker/feature_detail/<id>/', feature_detail, name='feature_detail'),
-    path('tracker/feature_detail/<id>/add_comment', add_comment),
+    path('tracker/issue_detail/<id>/add_comment', add_comment),
 ]

@@ -28,7 +28,7 @@ $(document).ready(function () {
             let issueID = Number.parseInt($('#new-comment-btn')[0].dataset.issueId);
             let comment = $('#new-comment-field')[0].value;
             let user = $('#new-comment-btn')[0].dataset.user;
-            let requestStr = `/issues/tracker/feature_detail/${issueID}/add_comment`;
+            let requestStr = `/issues/tracker/issue_detail/${issueID}/add_comment`;
             let responseData = '';
 
             $.post({
