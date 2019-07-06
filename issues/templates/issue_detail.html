@@ -79,21 +79,23 @@
 <div class="container mb-5">
     <div class="row" id="comment-container">
         <!-- Comment cards -->
+        {% for comment in comments %}
         <!-- card start -->
         <div class="comment-card w-75 mx-auto pl-4">
             <i class="fa fa-chevron-down fa-2x text-black-50"></i>
         </div>
         <div class="card heading-border mb-3 w-75 mx-auto">
             <div class="card-header">
-                <p class="text-muted pt-1 mb-0">Username</p>
+                <p class="text-muted pt-1 mb-0">{{ comment.user }}</p>
             </div>
             <div class="card-body">
-                <p class="card-text mt-2 mb-4">Comment text ................</p>
+                <p class="card-text mt-2 mb-4">{{ comment.comment }}</p>
                 <hr>
-                <p class="text-muted text-right mb-0">Commented on [comment_date]</p>
+                <p class="text-muted text-right mb-0">Commented on {{ comment.date_published }}</p>
             </div>
         </div>
         <!-- card end -->
+        {% endfor %}
 
         <!-- if no comments -->
         <!-- <div class="w-75 mx-auto list-group-item my-3">
