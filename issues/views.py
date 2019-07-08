@@ -12,6 +12,14 @@ def tracker(request):
     """ Renders the Tracker page that tracks and manages all bug reports and feature requests """
     bugs = Issue.objects.filter(issue_type='bug')
     features = Issue.objects.filter(issue_type='feature')
+    comments = IssueComment.objects.all()
+    votes = IssueVote.objects.all()
+    for bug in bugs:
+        bug.comments = comments.filter(issue=bug.pk).count()
+        bug.votes = votes.filter(issue=bug.pk).count()
+    for feature in features:
+        feature.comments = comments.filter(issue=feature.pk).count()
+        feature.votes = votes.filter(issue=feature.pk).count()
     return render(request, 'tracker.html', {'bugs': bugs, 'features': features})
 
 

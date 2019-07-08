@@ -51,12 +51,12 @@
                         </div>
                         <div class="ml-auto">
                             <span class="badge badge-light badge-pill issue-badge-pill"><i class="far fa-thumbs-up"></i>
-                                14</span>
+                                {{ bug.votes }}</span>
                             <span class="badge badge-light badge-pill issue-badge-pill"><i class="far fa-comment"></i>
-                                7</span>
+                                {{ bug.comments }}</span>
                         </div>
                     </div>
-                    <span class="text-muted">#{{ bug.pk}} Created on {{ bug.date_created }} by {{ bug.author }}</span>
+                    <span class="text-muted">#{{ bug.pk }} Created on {{ bug.date_created }} by {{ bug.author }}</span>
                 </li>
                 {% empty %}
                 <li class="list-group-item">
@@ -107,9 +107,9 @@
                         </div>
                         <div class="ml-auto">
                             <span class="badge badge-light badge-pill issue-badge-pill"><i class="far fa-thumbs-up"></i>
-                                14</span>
+                                {{ feature.votes }}</span>
                             <span class="badge badge-light badge-pill issue-badge-pill"><i class="far fa-comment"></i>
-                                7</span>
+                                {{ feature.comments }}</span>
                         </div>
                     </div>
                     <span class="text-muted">#{{ feature.pk}} Created on {{ feature.date_created }} by
