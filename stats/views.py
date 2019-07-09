@@ -2,6 +2,8 @@ from django.shortcuts import render
 from issues.models import Issue, IssueComment, IssueVote
 from operator import itemgetter
 from django.http import HttpResponse, JsonResponse
+from django.db.models import Count
+from datetime import datetime
 
 
 def stats(request):
@@ -52,3 +54,42 @@ def top_features(request):
         top_voted_features, key=itemgetter('count'), reverse=True)[:5]
 
     return JsonResponse(top_voted_features, safe=False)
+
+
+def bug_closure(request):
+    """ Returns JSON data for the last 5 dates on which bugs were closed, and how many on each date """
+
+    closed_bugs = Issue.objects.filter(issue_type='bug').filter(status='done')
+    closed_dates = closed_bugs.values('date_complete').distinct()[:5]
+    bug_closures_per_date = []
+    for date in closed_dates:
+        temp_dict = {}
+        temp_dict['date'] = date['date_complete'].strftime("%m/%d/%Y")
+        temp_dict['count'] = closed_bugs.filter(
+            date_complete=date['date_complete']).count()
+        bug_closures_per_date.append(temp_dict)
+
+    bug_closures_per_date = sorted(
+        bug_closures_per_date, key=itemgetter('date'), reverse=False)
+
+    return JsonResponse(bug_closures_per_date, safe=False)
+
+
+def feature_closure(request):
+    """ Returns JSON data for the last 5 dates on which features were closed, and how many on each date """
+
+    closed_features = Issue.objects.filter(
+        issue_type='feature').filter(status='done')
+    closed_dates = closed_features.values('date_complete').distinct()[:5]
+    feature_closures_per_date = []
+    for date in closed_dates:
+        temp_dict = {}
+        temp_dict['date'] = date['date_complete'].strftime("%m/%d/%Y")
+        temp_dict['count'] = closed_features.filter(
+            date_complete=date['date_complete']).count()
+        feature_closures_per_date.append(temp_dict)
+
+    feature_closures_per_date = sorted(
+        feature_closures_per_date, key=itemgetter('date'), reverse=False)
+
+    return JsonResponse(feature_closures_per_date, safe=False)

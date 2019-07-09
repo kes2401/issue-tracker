@@ -164,6 +164,8 @@ $(document).ready(function () {
         const allFeaturesCtx = $('#allFeaturesChart');
         const topVotedBugsCtx = $('#topVotedBugsChart');
         const topVotedFeaturesCtx = $('#topVotedFeaturesChart');
+        const bugClosureCtx = $('#bugClosureChart');
+        const featureClosureCtx = $('#featureClosureChart');
 
         // gather data
         const allBugsChartData = $('#allBugsChart')[0].dataset.chartdata.split(',').map(num => Number.parseInt(num));
@@ -193,7 +195,83 @@ $(document).ready(function () {
             buildTopFeaturesChart(labelArr, dataArr);
         })
 
+        $.get('/stats/bug_closure', data => {
+            const labelArr = [];
+            const dataArr = [];
+
+            for (let obj of data) {
+                labelArr.push(obj.date);
+                dataArr.push(obj.count)
+            }
+
+            buildBugClosureChart(labelArr, dataArr);
+        })
+
+        $.get('/stats/feature_closure', data => {
+            const labelArr = [];
+            const dataArr = [];
+
+            for (let obj of data) {
+                labelArr.push(obj.date);
+                dataArr.push(obj.count)
+            }
+
+            buildFeatureClosureChart(labelArr, dataArr);
+        })
+
         // build charts
+        function buildBugClosureChart(labels, dataset) {
+            const bugClosureChart = new Chart(bugClosureCtx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Bug Closures',
+                        data: dataset,
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(45, 162, 162, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    animation: {
+                        animateScale: true
+                    }
+
+                }
+            });
+        }
+
+        function buildFeatureClosureChart(labels, dataset) {
+            const featuresClosureChart = new Chart(featureClosureCtx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Feature Closures',
+                        data: dataset,
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(45, 162, 162, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    animation: {
+                        animateScale: true
+                    }
+
+                }
+            });
+        }
+
         function buildTopBugsChart(labels, dataset) {
             const topVotedBugsChart = new Chart(topVotedBugsCtx, {
                 type: 'horizontalBar',
