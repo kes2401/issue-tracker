@@ -229,10 +229,18 @@ $(document).ready(function () {
                         label: 'Bug Closures',
                         data: dataset,
                         backgroundColor: [
-                            'rgba(75, 192, 192, 0.7)'
+                            'rgba(225, 176, 56, 0.7)',
+                            'rgba(225, 176, 56, 0.7)',
+                            'rgba(225, 176, 56, 0.7)',
+                            'rgba(225, 176, 56, 0.7)',
+                            'rgba(225, 176, 56, 0.7)'
                         ],
                         borderColor: [
-                            'rgba(45, 162, 162, 1)'
+                            'rgba(195, 146, 26, 1)',
+                            'rgba(195, 146, 26, 1)',
+                            'rgba(195, 146, 26, 1)',
+                            'rgba(195, 146, 26, 1)',
+                            'rgba(195, 146, 26, 1)'
                         ],
                         borderWidth: 1
                     }]
@@ -240,8 +248,16 @@ $(document).ready(function () {
                 options: {
                     animation: {
                         animateScale: true
+                    },
+                    legend: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                min: 0,
+                                stepSize: 1
+                            }
+                        }]
                     }
-
                 }
             });
         }
@@ -255,9 +271,17 @@ $(document).ready(function () {
                         label: 'Feature Closures',
                         data: dataset,
                         backgroundColor: [
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
                             'rgba(75, 192, 192, 0.7)'
                         ],
                         borderColor: [
+                            'rgba(45, 162, 162, 1)',
+                            'rgba(45, 162, 162, 1)',
+                            'rgba(45, 162, 162, 1)',
+                            'rgba(45, 162, 162, 1)',
                             'rgba(45, 162, 162, 1)'
                         ],
                         borderWidth: 1
@@ -266,8 +290,16 @@ $(document).ready(function () {
                 options: {
                     animation: {
                         animateScale: true
+                    },
+                    legend: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                min: 0,
+                                stepSize: 1
+                            }
+                        }]
                     }
-
                 }
             });
         }
@@ -278,7 +310,7 @@ $(document).ready(function () {
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Top 5 Voted Bugs',
+                        label: 'Votes',
                         data: dataset,
                         backgroundColor: [
                             'rgba(75, 192, 192, 0.7)',
@@ -294,11 +326,18 @@ $(document).ready(function () {
                     }]
                 },
                 options: {
-
                     animation: {
                         animateScale: true
+                    },
+                    legend: false,
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                min: 0,
+                                stepSize: 1
+                            }
+                        }]
                     }
-
                 }
             });
         }
@@ -309,7 +348,7 @@ $(document).ready(function () {
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Top 5 Voted Bugs',
+                        label: 'Votes',
                         data: dataset,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.7)',
@@ -325,11 +364,18 @@ $(document).ready(function () {
                     }]
                 },
                 options: {
-
                     animation: {
                         animateScale: true
+                    },
+                    legend: false,
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                min: 0,
+                                stepSize: 1
+                            }
+                        }]
                     }
-
                 }
             });
         }
@@ -358,6 +404,10 @@ $(document).ready(function () {
             options: {
                 animation: {
                     animateScale: true
+                },
+                legend: {
+                    display: true,
+                    position: 'right'
                 }
             }
         });
@@ -386,6 +436,10 @@ $(document).ready(function () {
             options: {
                 animation: {
                     animateScale: true
+                },
+                legend: {
+                    display: true,
+                    position: 'right'
                 }
             }
 

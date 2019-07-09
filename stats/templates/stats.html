@@ -39,11 +39,13 @@
 
         <div class="col-12 col-md-6 my-5">
             <h4 class="text-center">Bug Closures</h4>
+            <p class="text-center"><em>By Date</em></p>
             <canvas id="bugClosureChart" width="400" height="240"></canvas>
         </div>
 
         <div class="col-12 col-md-6 my-5">
             <h4 class="text-center">Feature Closures</h4>
+            <p class="text-center"><em>By Date</em></p>
             <canvas id="featureClosureChart" width="400" height="240"></canvas>
         </div>
 
@@ -71,12 +73,12 @@
     <div class="row">
 
         <div class="col-12 col-md-6 my-5">
-            <h4 class="text-center">Status of All Bugs Reported</h4>
+            <h4 class="text-center mb-4">Status of All Bugs Reported</h4>
             <canvas id="allBugsChart" width="400" height="240" data-chartData="{{ all_bugs_chart }}"></canvas>
         </div>
 
         <div class="col-12 col-md-6 my-5">
-            <h4 class="text-center">Status of All Features Requested</h4>
+            <h4 class="text-center mb-4">Status of All Features Requested</h4>
             <canvas id="allFeaturesChart" width="400" height="240" data-chartData="{{ all_features_chart }}"></canvas>
         </div>
 
