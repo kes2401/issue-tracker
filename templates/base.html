@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     <!-- Favicon -->
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+    <!-- Chart.js -->
+    {% block chart_js_link %} {% endblock %}
+    <!-- Open Sans font -->
 </head>
 
 <body>
@@ -135,6 +138,8 @@
     <script src="{% static 'lib/jquery/jquery.js' %}"></script>
     <!-- Bootstrap JS -->
     <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <!-- Chart JS -->
+    {% block chart_js_script %}{% endblock %}
     <!-- JS -->
     <script src="{% static 'js/script.js' %}"></script>
 
