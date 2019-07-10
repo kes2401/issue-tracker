@@ -98,9 +98,9 @@ def feature_detail(request, id):
 def add_comment(request, id):
     if request.method == 'POST':
         new_comment = IssueComment(comment=request.POST.get('comment'))
-        currrent_user = User.objects.get(username=request.user)
+        current_user = User.objects.get(username=request.user)
         current_issue = Issue.objects.get(pk=id)
-        new_comment.user = currrent_user
+        new_comment.user = current_user
         new_comment.issue = current_issue
         new_comment.save()
         savetime = IssueComment.objects.get(
@@ -111,17 +111,17 @@ def add_comment(request, id):
 def add_vote(request, id):
     if request.method == 'POST':
         new_vote = IssueVote()
-        currrent_user = User.objects.get(username=request.user)
+        current_user = User.objects.get(username=request.user)
         current_issue = Issue.objects.get(pk=id)
         new_vote.issue = current_issue
-        new_vote.user = currrent_user
+        new_vote.user = current_user
         new_vote.save()
         return HttpResponse('added')
 
 
 def remove_vote(request, id):
     if request.method == 'POST':
-        currrent_user = User.objects.get(username=request.user)
+        current_user = User.objects.get(username=request.user)
         current_issue = Issue.objects.get(pk=id)
-        IssueVote.objects.get(user=currrent_user, issue=current_issue).delete()
+        IssueVote.objects.get(user=current_user, issue=current_issue).delete()
         return HttpResponse('removed')
