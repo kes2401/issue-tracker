@@ -49,18 +49,22 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for bug in user_bugs %}
                     <tr>
-                        <td>001</td>
-                        <td>Pellentesque non velit nec ligula</td>
-                        <td>Done</td>
-                        <td><a href="#" class="btn btn-sm btn-success mx-auto">View</a></td>
+                        <td>{{ bug.pk }}</td>
+                        <td>{{ bug.title }}</td>
+                        <td>{{ bug.status}}</td>
+                        <td><a href="/issues/tracker/feature_detail/{{ bug.pk }}/"
+                                class="btn btn-sm btn-success mx-auto">View</a></td>
                     </tr>
+                    {% empty %}
                     <tr>
-                        <td>002</td>
-                        <td>In nec dictum sapien, sit</td>
-                        <td>In Progress</td>
-                        <td><a href="#" class="btn btn-sm btn-success mx-auto">View</a></td>
+                        <td></td>
+                        <td class="py-3">You have not reported any Bugs.</td>
+                        <td></td>
+                        <td></td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -79,20 +83,24 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for feature in user_features %}
                     <tr>
-                        <td>011</td>
-                        <td>Vivamus arcu libero, laoreet sed</td>
-                        <td>In Progress</td>
+                        <td>{{ feature.pk }}</td>
+                        <td>{{ feature.title }}</td>
+                        <td>{{ feature.status }}</td>
                         <td>€ 50.00</td>
-                        <td><a href="#" class="btn btn-sm btn-success mx-auto">View</a></td>
+                        <td><a href="/issues/tracker/feature_detail/{{ feature.pk }}/"
+                                class="btn btn-sm btn-success mx-auto">View</a></td>
                     </tr>
+                    {% empty %}
                     <tr>
-                        <td>012</td>
-                        <td>Duis convallis, tellus non fermentum</td>
-                        <td>Pending</td>
-                        <td>€ 75.00</td>
-                        <td><a href="#" class="btn btn-sm btn-success mx-auto">View</a></td>
+                        <td></td>
+                        <td class="py-3">You have not requested any new Features.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
             <p class="text-right mr-5"><strong>Total Paid: € 150.00</strong></p>

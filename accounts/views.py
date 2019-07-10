@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from accounts.forms import UserLoginForm, UserRegistrationForm
+from django.contrib.auth.models import User
+from issues.models import Issue, IssueComment, IssueVote
 
 
 def login(request):
@@ -61,4 +63,11 @@ def register(request):
 @login_required
 def profile(request):
     """ Renders profile dashboard for logged in user """
-    return render(request, 'profile.html')
+
+    current_user = User.objects.get(username=request.user)
+    user_bugs = Issue.objects.all().filter(
+        issue_type='bug').filter(author=current_user)
+    user_features = Issue.objects.all().filter(
+        issue_type='feature').filter(author=current_user)
+
+    return render(request, 'profile.html', {'user_bugs': user_bugs, 'user_features': user_features})
