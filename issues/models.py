@@ -8,9 +8,9 @@ class Issue(models.Model):
         ('feature', 'Feature')
     ]
     STATUS_CHOICES = [
-        ('Pending', 'Pending'),
-        ('In Progress', 'In Progress'),
-        ('Closed', 'Closed')
+        ('pending', 'Pending'),
+        ('in progress', 'In Progress'),
+        ('closed', 'Closed')
     ]
     issue_type = models.CharField(max_length=7, choices=ISSUE_CHOICES)
     title = models.CharField(max_length=40)

@@ -9,11 +9,11 @@ from datetime import datetime
 def stats(request):
     """ Renders the Stats page to display statistics for bug reports and feature requests """
 
-    all_bugs_chart = '' + str(Issue.objects.filter(issue_type='bug').filter(status='Pending').count()) + ',' + str(Issue.objects.filter(issue_type='bug').filter(
-        status='In Progress').count()) + ',' + str(Issue.objects.filter(issue_type='bug').filter(status='Done').count())
+    all_bugs_chart = '' + str(Issue.objects.filter(issue_type='bug').filter(status='pending').count()) + ',' + str(Issue.objects.filter(issue_type='bug').filter(
+        status='in progress').count()) + ',' + str(Issue.objects.filter(issue_type='bug').filter(status='closed').count())
 
-    all_features_chart = '' + str(Issue.objects.filter(issue_type='feature').filter(status='Pending').count()) + ',' + str(Issue.objects.filter(issue_type='feature').filter(
-        status='In Progress').count()) + ',' + str(Issue.objects.filter(issue_type='feature').filter(status='Done').count())
+    all_features_chart = '' + str(Issue.objects.filter(issue_type='feature').filter(status='pending').count()) + ',' + str(Issue.objects.filter(issue_type='feature').filter(
+        status='in progress').count()) + ',' + str(Issue.objects.filter(issue_type='feature').filter(status='closed').count())
 
     return render(request, 'stats.html', {
         'all_bugs_chart': all_bugs_chart,
@@ -24,7 +24,7 @@ def stats(request):
 def top_bugs(request):
     """ Returns JSON data for the 5 top voted bugs to be displayed on chart """
 
-    open_bugs = Issue.objects.filter(issue_type='bug').exclude(status='Done')
+    open_bugs = Issue.objects.filter(issue_type='bug').exclude(status='closed')
     top_voted_bugs = []
     for bug in open_bugs:
         temp_dict = {}
@@ -42,7 +42,7 @@ def top_features(request):
     """ Returns JSON data for the 5 top voted features to be displayed on chart """
 
     open_features = Issue.objects.filter(
-        issue_type='feature').exclude(status='Done')
+        issue_type='feature').exclude(status='closed')
     top_voted_features = []
     for feature in open_features:
         temp_dict = {}
@@ -59,7 +59,8 @@ def top_features(request):
 def bug_closure(request):
     """ Returns JSON data for the last 5 dates on which bugs were closed, and how many on each date """
 
-    closed_bugs = Issue.objects.filter(issue_type='bug').filter(status='Done')
+    closed_bugs = Issue.objects.filter(
+        issue_type='bug').filter(status='closed')
     closed_dates = closed_bugs.values('date_complete').distinct()[:5]
     bug_closures_per_date = []
     for date in closed_dates:
@@ -79,7 +80,7 @@ def feature_closure(request):
     """ Returns JSON data for the last 5 dates on which features were closed, and how many on each date """
 
     closed_features = Issue.objects.filter(
-        issue_type='feature').filter(status='Closed')
+        issue_type='feature').filter(status='closed')
     closed_dates = closed_features.values('date_complete').distinct()[:5]
     feature_closures_per_date = []
     for date in closed_dates:
