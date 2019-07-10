@@ -15,21 +15,6 @@
         <div class="col-10 offset-1 col-sm-6 offset-sm-0 col-md-5 offset-md-1 mt-4 mt-sm-2">
             <h4 class="xs-center"><strong>Profile Details</strong></h4>
             <p>Username: <span class="text-muted">{{ user.username }}</span></p>
-            {% if user.first_name %}
-            <p>First Name: <span class="text-muted">{{ user.first_name }}</span> <span><a href="#"
-                        class="btn btn-sm btn-info mx-3">Edit</a></span></p>
-            {% else %}
-            <p>First Name: <span class="text-muted"><em>Not yet provided</em></span> <span><a href="#"
-                        class="btn btn-sm btn-info mx-3">Edit</a></span></p>
-            {% endif %}
-            {% if user.last_name %}
-            <p>Last Name: <span class="text-muted">{{ user.last_name }}</span> <span><a href="#"
-                        class="btn btn-sm btn-info mx-3">Edit</a></span></p>
-            </p>
-            {% else %}
-            <p>Last Name: <span class="text-muted"><em>Not yet provided</em></span> <span><a href="#"
-                        class="btn btn-sm btn-info mx-3">Edit</a></span></p>
-            {% endif %}
             <p>Email: <span class="text-muted">{{ user.email }}</span></p>
             <p>Password: <span class="text-muted">********</span> <span><a href="#"
                         class="btn btn-sm btn-success mx-2 mt-2 mt-md-0">Change
