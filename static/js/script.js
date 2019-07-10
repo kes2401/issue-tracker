@@ -2,6 +2,44 @@ $(document).ready(function () {
 
     $('[data-toggle="tooltip"]').tooltip();
 
+
+    // Register page
+    if (document.title === 'UnicornAttractor - Issue & Feature Tracker - Register') {
+
+        $('label').addClass('d-none');
+
+        $('p.help-block').addClass('d-none');
+
+        $('#id_email').attr('placeholder', 'Email');
+        $('#id_email').addClass('p-4');
+
+        $('#id_username').attr('placeholder', 'Username');
+        $('#id_username').addClass('p-4');
+
+        $('#id_password1').attr('placeholder', 'Password');
+        $('#id_password1').addClass('p-4');
+
+        $('#id_password2').attr('placeholder', 'Re-confirm Password');
+        $('#id_password2').addClass('p-4');
+
+        $('#id_email').focus();
+    }
+
+    // Login page
+    if (document.title === 'UnicornAttractor - Issue & Feature Tracker - Login') {
+
+        $('label').addClass('d-none');
+
+        $('#id_username').attr('placeholder', 'Username');
+        $('#id_username').addClass('p-4');
+
+        $('#id_password').attr('placeholder', 'Password');
+        $('#id_password').addClass('p-4');
+
+        $('#id_username').focus();
+    }
+
+
     // Issue Detail Page
     if (document.title === 'UnicornAttractor - Issue & Feature Tracker - Issue Detail') {
 

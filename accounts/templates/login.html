@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load bootstrap_tags %}
 {% block title %}
 - Login
 {% endblock %}
 {% block content %}
 
-<div class="container">
-    <h1>Login page</h1>
-
+<div class="container text-center form-container mb-4">
+    <img class="brand-logo w-75 mx-auto mb-4" src="{% static 'img/UnicornAttractor.png' %}" alt="UnicornAttractor logo">
+    <h2 class="mb-4"><strong>Please Log In</strong></h2>
     <form method="POST">
         {% csrf_token %}
         {{ login_form | as_bootstrap }}
-        <input type="submit" value="Login">
+        <input type="submit" class="btn btn-success w-100 mb-3" value="Login">
     </form>
     <p><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
 </div>

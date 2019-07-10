@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load bootstrap_tags %}
 {% block title %}
 - Register
 {% endblock %}
 {% block content %}
-<div class="container">
-    <h3>This is the user registration page</h3>
+<div class="container text-center form-container mb-5">
+    <img class="brand-logo w-75 mx-auto mb-4" src="{% static 'img/UnicornAttractor.png' %}" alt="UnicornAttractor logo">
+    <h2 class="mb-4"><strong>Please Register</strong></h2>
 
     <p>If you already have an account you can log in <a href="{% url 'login' %}">here</a></p>
 
     <form method="POST">
         {% csrf_token %}
         {{ registration_form | as_bootstrap }}
-        <input type="submit" value="Register">
+        <input type="submit" class="btn btn-success w-100 mb-3" value="Register">
     </form>
 </div>
 {% endblock %}
