@@ -58,6 +58,11 @@ div.messages-container {
     margin: 0 auto;
 }
 
+.button-container {
+    width: max-content;
+    margin-left: auto;
+}
+
 .table {
     background-color: #fff;
 }

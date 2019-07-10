@@ -66,9 +66,16 @@
                 </li>
                 {% endfor %}
             </ul>
-            <div class="d-flex">
-                <a href="{% url 'create_bug' %}" class="btn btn-success my-2 ml-auto">New Bug</a>
+            {% if not user.is_authenticated %}
+            <div class="d-flex button-container" data-toggle="tooltip" data-placement="top" title=""
+                data-original-title="Please Log In">
+                <a href="{% url 'create_bug' %}" class="btn btn-success my-2 disabled">New Bug</a>
             </div>
+            {% else %}
+            <div class="d-flex button-container">
+                <a href="{% url 'create_bug' %}" class="btn btn-success my-2">New Bug</a>
+            </div>
+            {% endif %}
         </div>
 
         <div class="col-12 col-md-6">
@@ -123,9 +130,16 @@
                 </li>
                 {% endfor %}
             </ul>
-            <div class="d-flex">
-                <a href="{% url 'create_feature' %}" class="btn btn-success my-2 ml-auto">New Feature</a>
+            {% if not user.is_authenticated %}
+            <div class="d-flex button-container" data-toggle="tooltip" data-placement="top" title=""
+                data-original-title="Please Log In">
+                <a href="{% url 'create_feature' %}" class="btn btn-success my-2 disabled">New Feature</a>
             </div>
+            {% else %}
+            <div class="d-flex button-container">
+                <a href="{% url 'create_feature' %}" class="btn btn-success my-2">New Feature</a>
+            </div>
+            {% endif %}
         </div>
     </div>
 

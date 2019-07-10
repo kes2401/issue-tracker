@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    $('[data-toggle="tooltip"]').tooltip();
+
     // Issue Detail Page
     if (document.title === 'UnicornAttractor - Issue & Feature Tracker - Issue Detail') {
 
