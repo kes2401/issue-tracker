@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import env
+import dj_database_url
 
 if os.environ.get('DEVELOPMENT'):
     development = True
@@ -92,7 +93,7 @@ if development:
     }
 else:
     DATABASES = {
-        'default': None  # ---Enter production database URL
+        'default': dj_database_url.parse('postgres://qfujqfzzymzlcj:f912804a6a06639b2024e97d81cab588ffe41e55cae4f55ad7680093e160375c@ec2-54-228-246-214.eu-west-1.compute.amazonaws.com:5432/d58fvsiv605k2s')
     }
 
 # Password validation
