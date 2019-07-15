@@ -22,7 +22,7 @@ class Issue(models.Model):
         max_length=11, choices=STATUS_CHOICES, default='pending')
     amount_paid = models.DecimalField(
         max_digits=8, decimal_places=2, default=0.00)
-    date_complete = models.DateField(null=True)
+    date_complete = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return self.title
