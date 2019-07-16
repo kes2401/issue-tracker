@@ -85,6 +85,10 @@ div p.main-text {
     font-weight: 500;
 }
 
+.min-width-90 {
+    min-width: 90px;
+}
+
 .heading-border {
     border-color: #c3c3c3 !important;
 }

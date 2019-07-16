@@ -40,16 +40,17 @@
                         <h6><a href="bug_detail/{{ bug.pk }}/"
                                 class="text-decoration-none text-secondary font-weight-bold"><strong>{{ bug.title }}</strong></a>
                         </h6>
-                        <div>
+                        <div class="ml-auto min-width-90 d-flex justify-content-center">
                             {% if bug.status == 'pending' %}
-                            <span class="badge badge-warning badge-pill issue-badge-pill ml-5">Pending</span>
+                            <span class="d-inline-block badge badge-warning badge-pill issue-badge-pill">Pending</span>
                             {% elif bug.status == 'in progress' %}
-                            <span class="badge badge-success badge-pill issue-badge-pill ml-5">In Progress</span>
+                            <span class="d-inline-block badge badge-success badge-pill issue-badge-pill">In
+                                Progress</span>
                             {% else %}
-                            <span class="badge badge-info badge-pill issue-badge-pill ml-5">Closed</span>
+                            <span class="d-inline-block badge badge-info badge-pill issue-badge-pill">Closed</span>
                             {% endif %}
                         </div>
-                        <div class="ml-auto">
+                        <div class="ml-1 min-width-90">
                             <span class="badge badge-light badge-pill issue-badge-pill"><i class="far fa-thumbs-up"></i>
                                 {{ bug.votes }}</span>
                             <span class="badge badge-light badge-pill issue-badge-pill"><i class="far fa-comment"></i>
@@ -103,16 +104,17 @@
                             <a href="feature_detail/{{ feature.pk }}/"
                                 class="text-decoration-none text-secondary font-weight-bold"><strong>{{ feature.title }}</strong></a>
                         </h6>
-                        <div>
+                        <div class="ml-auto min-width-90 d-flex justify-content-center">
                             {% if feature.status == 'pending' %}
-                            <span class="badge badge-warning badge-pill issue-badge-pill ml-5">Pending</span>
+                            <span class="d-inline-block badge badge-warning badge-pill issue-badge-pill">Pending</span>
                             {% elif feature.status == 'in progress' %}
-                            <span class="badge badge-success badge-pill issue-badge-pill ml-5">In Progress</span>
+                            <span class="d-inline-block badge badge-success badge-pill issue-badge-pill">In
+                                Progress</span>
                             {% else %}
-                            <span class="badge badge-info badge-pill issue-badge-pill ml-5">Closed</span>
+                            <span class="d-inline-block badge badge-info badge-pill issue-badge-pill">Closed</span>
                             {% endif %}
                         </div>
-                        <div class="ml-auto">
+                        <div class="ml-1 min-width-90">
                             <span class="badge badge-light badge-pill issue-badge-pill"><i class="far fa-thumbs-up"></i>
                                 {{ feature.votes }}</span>
                             <span class="badge badge-light badge-pill issue-badge-pill"><i class="far fa-comment"></i>
