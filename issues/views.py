@@ -68,7 +68,7 @@ def create_feature(request):
 @ensure_csrf_cookie
 def bug_detail(request, id):
     bug = Issue.objects.get(pk=id)
-    comments = IssueComment.objects.all().filter(issue=id)
+    comments = IssueComment.objects.all().filter(issue=id).order_by('date_published')
     votes = IssueVote.objects.all().filter(issue=id)
     votes_count = votes.count()
     for vote in votes:
@@ -83,7 +83,7 @@ def bug_detail(request, id):
 @ensure_csrf_cookie
 def feature_detail(request, id):
     feature = Issue.objects.get(pk=id)
-    comments = IssueComment.objects.all().filter(issue=id)
+    comments = IssueComment.objects.all().filter(issue=id).order_by('date_published')
     votes = IssueVote.objects.all().filter(issue=id)
     votes_count = votes.count()
     for vote in votes:
