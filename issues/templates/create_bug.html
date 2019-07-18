@@ -7,13 +7,15 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        Report A Bug page
-        {{ form.media }}
-        <form method="POST" action='' enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form | as_bootstrap }}
-            <input type="submit" class="btn btn-success" value="Submit New Bug">
-        </form>
+        <div class="col-10 offset-1 col-md-6 offset-md-3 mb-4 text-center">
+            <h2 class="mb-4"><strong>Report A Bug</strong></h2>
+            {{ form.media }}
+            <form method="POST" action='' enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form | as_bootstrap }}
+                <input type="submit" class="btn btn-success" value="Submit New Bug">
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

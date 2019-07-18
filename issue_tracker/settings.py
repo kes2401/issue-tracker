@@ -163,4 +163,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 TINYMCE_DEFAULT_CONFIG = {
     'theme': 'simple',
     'content_style': '.mcecontentbody{font-size:1rem;}',
+    'width': '100%',
 }

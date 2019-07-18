@@ -7,13 +7,15 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        Request A New Feature
-        {{ form.media }}
-        <form method="POST" action='' enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form | as_bootstrap }}
-            <input type="submit" class="btn btn-success" value="Request New Feature">
-        </form>
+        <div class="col-10 offset-1 col-md-6 offset-md-3 mb-4 text-center">
+            <h2 class="mb-4"><strong>Request A New Feature</strong></h2>
+            {{ form.media }}
+            <form method="POST" action='' enctype="multipart/form-data" class="create-issue-form">
+                {% csrf_token %}
+                {{ form | as_bootstrap }}
+                <input type="submit" class="btn btn-success" value="Request New Feature">
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

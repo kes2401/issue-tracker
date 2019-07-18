@@ -45,6 +45,8 @@ $(document).ready(function () {
     if (document.title === 'UnicornAttractor - Issue & Feature Tracker - Create Bug' ||
         document.title === 'UnicornAttractor - Issue & Feature Tracker - Create Feature') {
 
+        $('#id_title').focus();
+
         setTimeout(function () {
             const toolbar = $('td.mceToolbar');
             $('td.mceToolbar').parent().parent().prepend(toolbar);
