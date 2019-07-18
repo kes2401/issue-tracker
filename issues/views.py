@@ -23,7 +23,7 @@ def tracker(request):
     return render(request, 'tracker.html', {'bugs': bugs, 'features': features})
 
 
-# @login_required
+@login_required
 def create_bug(request):
     """ Render page providing form to user to report a new bug """
     if request.method == 'POST':
@@ -44,7 +44,7 @@ def create_bug(request):
     return render(request, 'create_bug.html', {'form': form})
 
 
-# @login_required
+@login_required
 def create_feature(request):
     """ Render page providing form to user to create a new feature request """
     if request.method == 'POST':
