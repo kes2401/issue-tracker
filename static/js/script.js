@@ -40,6 +40,21 @@ $(document).ready(function () {
     }
 
 
+
+    // Create issue pages
+    if (document.title === 'UnicornAttractor - Issue & Feature Tracker - Create Bug' ||
+        document.title === 'UnicornAttractor - Issue & Feature Tracker - Create Feature') {
+
+        setTimeout(function () {
+            const toolbar = $('td.mceToolbar');
+            $('td.mceToolbar').parent().parent().prepend(toolbar);
+            $('#tinymce').attr('style', 'font-size: 1rem;')
+        }, 250); // ===== TODO: build a better way of manipulating TinyMCE text editor when after its created in the DOM =====
+    }
+
+
+
+
     // Issue Detail Page
     if (document.title === 'UnicornAttractor - Issue & Feature Tracker - Issue Detail') {
 
@@ -113,8 +128,6 @@ $(document).ready(function () {
 
         });
 
-
-
         // Add/Remove votes
         $('.vote-btn').click(function () {
 
@@ -133,7 +146,6 @@ $(document).ready(function () {
                 $('.vote-btn').removeClass('text-info');
                 postVote('remove');
             }
-
 
 
             function postVote(status) {
@@ -172,9 +184,6 @@ $(document).ready(function () {
         })
 
 
-
-
-
         // get csrf token from cookie
         function getCookie(name) {
             let cookieValue = null;
@@ -190,8 +199,6 @@ $(document).ready(function () {
             }
             return cookieValue;
         }
-
-
     }
 
 

@@ -40,7 +40,7 @@
             </div>
             <div class="card-body">
                 <h6 class="card-title">Issue Description</h6>
-                <p class="card-text mt-2 mb-4">{{ issue.description }}</p>
+                <p class="card-text mt-2 mb-4">{{ issue.description | safe }}</p>
                 <hr>
                 <h6 class="card-title">Status</h6>
                 {% if issue.status == 'pending' %}

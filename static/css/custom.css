@@ -105,6 +105,14 @@ div p.main-text {
     color: #17a2b8;
 }
 
+/* TinyMCE custom styles  */
+td.mceToolbar {
+    height: 32px !important;
+}
+
+#tinymce.mceContentBody {
+    font-size: 1rem !important;
+}
 
 /* Utility Classes */
 

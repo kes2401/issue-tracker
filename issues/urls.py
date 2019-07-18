@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from .views import tracker, create_bug, create_feature, feature_detail, bug_detail, add_comment, add_vote, remove_vote
 
 urlpatterns = [
@@ -10,4 +10,5 @@ urlpatterns = [
     path('tracker/issue_detail/<id>/add_comment', add_comment),
     path('tracker/issue_detail/<id>/add_vote', add_vote),
     path('tracker/issue_detail/<id>/remove_vote', remove_vote),
+    path('tinymce/', include('tinymce.urls')),
 ]

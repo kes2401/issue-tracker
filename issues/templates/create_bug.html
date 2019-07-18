@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load bootstrap_tags %}
 {% block title %}
 - Create Bug
@@ -7,7 +8,8 @@
 <div class="container">
     <div class="row">
         Report A Bug page
-        <form method="POST">
+        {{ form.media }}
+        <form method="POST" action='' enctype="multipart/form-data">
             {% csrf_token %}
             {{ form | as_bootstrap }}
             <input type="submit" class="btn btn-success" value="Submit New Bug">

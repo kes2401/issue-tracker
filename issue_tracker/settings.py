@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'issues',
     'stats',
     'storages',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -158,3 +159,8 @@ STATICFILES_DIRS = [
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': 'simple',
+    'content_style': '.mcecontentbody{font-size:1rem;}',
+}

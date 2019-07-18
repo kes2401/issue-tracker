@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load bootstrap_tags %}
 {% block title %}
 - Create Feature
@@ -7,7 +8,8 @@
 <div class="container">
     <div class="row">
         Request A New Feature
-        <form method="POST">
+        {{ form.media }}
+        <form method="POST" action='' enctype="multipart/form-data">
             {% csrf_token %}
             {{ form | as_bootstrap }}
             <input type="submit" class="btn btn-success" value="Request New Feature">

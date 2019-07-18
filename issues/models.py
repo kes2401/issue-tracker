@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 
 
 class Issue(models.Model):
@@ -14,7 +15,7 @@ class Issue(models.Model):
     ]
     issue_type = models.CharField(max_length=7, choices=ISSUE_CHOICES)
     title = models.CharField(max_length=40)
-    description = models.TextField(max_length=1248)
+    description = HTMLField('Description')
     date_created = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
         User, default='Anonymous', on_delete=models.CASCADE)
