@@ -21,8 +21,7 @@ class Issue(models.Model):
         User, default='Anonymous', on_delete=models.CASCADE)
     status = models.CharField(
         max_length=11, choices=STATUS_CHOICES, default='pending')
-    amount_paid = models.DecimalField(
-        max_digits=5, decimal_places=2, default=0.00)
+    amount_paid = models.IntegerField(default=0)
     date_complete = models.DateField(null=True, blank=True)
 
     def __str__(self):
