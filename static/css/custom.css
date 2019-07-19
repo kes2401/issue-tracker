@@ -146,6 +146,14 @@ table .w-50 {
     width: 50%;
 }
 
+div .w-20 { 
+    width: 20%;
+}
+
+div .w-40 { 
+    width: 40%;
+}
+
  /* Media Queries  */
 
 @media (max-width: 767px) {
