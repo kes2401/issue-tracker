@@ -26,22 +26,27 @@
                                 <strong>€</strong><span>{{ item.amount }}</span>.00
                             </p>
                         </div>
-                        <div class="input-group w-20">
-                            <div class="input-group-prepend d-none d-lg-block">
-                                <span class="input-group-text px-1">€</span>
+                        <form method="POST" action="{% url 'update_cart' %}" class="d-inline-flex">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <div class="input-group-prepend d-none d-lg-inline-flex">
+                                    <span class="input-group-text px-1">€</span>
+                                </div>
+                                <input type="number" name="amount_to_pay" class="form-control p-1"
+                                    aria-label="Amount (to the nearest Euro)" value="{{ item.amount }}" min="50">
+                                <input type="number" name="key" class="d-none" value="{{ item.pk }}">
+                                <div class="input-group-append d-none d-lg-inline-flex">
+                                    <span class="input-group-text px-1">.00</span>
+                                </div>
                             </div>
-                            <input type="number" class="form-control p-1" aria-label="Amount (to the nearest Euro)"
-                                value="{{ item.amount }}">
-                            <div class="input-group-append d-none d-lg-block">
-                                <span class="input-group-text px-1">.00</span>
+                            <div class="ml-1 ml-md-2">
+                                <button type="submit" class="btn btn-info text-white"><i
+                                        class="fas fa-sync"></i></button>
                             </div>
-                        </div>
-                        <div class="ml-1 ml-md-2">
-                            <a href="" type="button" class="btn btn-info text-white"><i class="fas fa-sync"></i></a>
-                        </div>
+                        </form>
                         <div class="ml-1 ml-md-3">
-                            <a href="" type="button" class="btn btn-danger text-white"><i
-                                    class="far fa-trash-alt"></i></a>
+                            <a href="{% url 'remove_from_cart' item.pk %}" type="button"
+                                class="btn btn-danger text-white"><i class="far fa-trash-alt"></i></a>
                         </div>
                     </div>
                 </li>
