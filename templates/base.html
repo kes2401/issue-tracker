@@ -50,6 +50,11 @@
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
+                        <a class="nav-link mr-5" href="{% url 'view_cart' %}"><strong><i
+                                    class="fas fa-shopping-cart"></i>
+                                Cart</strong></a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'profile' %}"><strong><i class="fas fa-user-alt"></i>
                                 Profile</strong></a>
                     </li>
@@ -111,6 +116,7 @@
                         <li><a href="{% url 'stats' %}">Stats</a></li>
                         <li><a href="{% url 'tracker' %}">Tracker</a></li>
                         {% if user.is_authenticated %}
+                        <li><a href="{% url 'view_cart' %}">Cart</a></li>
                         <li><a href="{% url 'profile' %}">Profile</a></li>
                         <li><a href="{% url 'logout' %}">Logout</a></li>
                         {% else %}
