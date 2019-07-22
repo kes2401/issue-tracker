@@ -10,10 +10,35 @@
         <div class="col-10 offset-1 col-md-6 offset-md-3 mb-4 text-center">
             <h2 class="mb-4"><strong>Request A New Feature</strong></h2>
             {{ form.media }}
-            <form method="POST" action='' enctype="multipart/form-data" class="create-issue-form">
+            <form method="POST" action="{% url 'add_to_cart' %}" enctype="multipart/form-data"
+                class="create-issue-form">
                 {% csrf_token %}
                 {{ form | as_bootstrap }}
-                <input type="submit" class="btn btn-success" value="Request New Feature">
+                <input type="button" class="btn btn-success" value="Request New Feature" data-toggle="modal"
+                    data-target="#newFeatureModal">
+                <!-- Modal -->
+                <div class="modal fade" id="newFeatureModal" tabindex="-1" role="dialog"
+                    aria-labelledby="newFeatureModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="newFeatureModalLabel">Request New Feature</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Requesting a new feature requires a payment of at least € 50.00. The highest funded
+                                    new feature request will be the next new feature to go into development. You can
+                                    choose to pay more if you wish...</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+                                <button type="submit" class="btn btn-success">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

@@ -10,18 +10,20 @@
             <h2 class="mb-4"><strong>Shopping Cart</strong></h2>
 
             <ul class="list-group">
-
+                {% for item in cart_items %}
                 <li class="list-group-item list-group-item-action p-2 p-md-4">
                     <div class="d-flex flex-row align-items-center">
                         <div>
                             <i class="fas fa-plus mr-2 border border-success text-success rounded-circle p-1"></i>
                         </div>
                         <div class="w-40">
-                            <p class="text-secondary font-weight-bold pl-2 mb-0"><strong>New Feature</strong>
+                            <p class="text-secondary pl-2 mb-0">
+                                <span class="font-weight-bold">{{ item.request_type|title }}</span> - {{ item.title }}
                             </p>
                         </div>
                         <div class="w-40">
-                            <p class="text-secondary font-weight-bold pl-2 mb-0"><strong>€</strong><span>50</span>.00
+                            <p class="text-secondary font-weight-bold pl-2 mb-0">
+                                <strong>€</strong><span>{{ item.amount }}</span>.00
                             </p>
                         </div>
                         <div class="input-group w-20">
@@ -29,60 +31,42 @@
                                 <span class="input-group-text px-1">€</span>
                             </div>
                             <input type="number" class="form-control p-1" aria-label="Amount (to the nearest Euro)"
-                                value="50">
+                                value="{{ item.amount }}">
                             <div class="input-group-append d-none d-lg-block">
                                 <span class="input-group-text px-1">.00</span>
                             </div>
                         </div>
                         <div class="ml-1 ml-md-2">
-                            <button type="button" class="btn btn-info"><i class="fas fa-sync"></i></button>
+                            <a href="" type="button" class="btn btn-info text-white"><i class="fas fa-sync"></i></a>
                         </div>
                         <div class="ml-1 ml-md-3">
-                            <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                            <a href="" type="button" class="btn btn-danger text-white"><i
+                                    class="far fa-trash-alt"></i></a>
                         </div>
                     </div>
                 </li>
-
+                {% empty %}
                 <li class="list-group-item list-group-item-action p-2 p-md-4">
                     <div class="d-flex flex-row align-items-center">
-                        <div>
-                            <i class="far fa-thumbs-up mr-2 border border-primary text-primary rounded-circle p-1"></i>
-                        </div>
                         <div class="w-40">
-                            <p class="text-secondary font-weight-bold pl-2 mb-0"><strong>Feature Vote</strong>
+                            <p class="text-secondary font-weight-bold pl-2 mb-0"><strong>You have no items in your
+                                    cart.</strong>
                             </p>
-                        </div>
-                        <div class="w-40">
-                            <p class="text-secondary font-weight-bold pl-2 mb-0"><strong>€</strong><span>50</span>.00
-                            </p>
-                        </div>
-                        <div class="input-group w-20">
-                            <div class="input-group-prepend d-none d-lg-block">
-                                <span class="input-group-text px-1">€</span>
-                            </div>
-                            <input type="number" class="form-control p-1" aria-label="Amount (to the nearest Euro)"
-                                value="50">
-                            <div class="input-group-append d-none d-lg-block">
-                                <span class="input-group-text px-1">.00</span>
-                            </div>
-                        </div>
-                        <div class="ml-1 ml-md-2">
-                            <button type="button" class="btn btn-info"><i class="fas fa-sync"></i></button>
-                        </div>
-                        <div class="ml-1 ml-md-3">
-                            <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                         </div>
                     </div>
                 </li>
-
-
+                {% endfor %}
             </ul>
 
-
+            {% if cart_items|length > 0 %}
             <div class="d-flex button-container">
                 <a href="{% url 'create_bug' %}" class="btn btn-success my-3">Checkout</a>
             </div>
-
+            {% else %}
+            <div class="d-flex button-container">
+                <a href="{% url 'create_bug' %}" class="btn btn-success my-3 disabled">Checkout</a>
+            </div>
+            {% endif %}
 
 
 

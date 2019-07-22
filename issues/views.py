@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from .forms import CreateIssue
 from .models import Issue, IssueComment, IssueVote
+from cart.forms import Cart_New_feature
 from django.http import HttpResponse
 
 
@@ -46,22 +47,8 @@ def create_bug(request):
 
 @login_required
 def create_feature(request):
-    """ Render page providing form to user to create a new feature request """
-    if request.method == 'POST':
-        form = CreateIssue(request.POST)
-        if form.is_valid():
-            instance = form.save(commit=False)
-            instance.issue_type = 'feature'
-            instance.author = request.user
-            instance.save()
-            messages.success(
-                request, 'You have successfully submitted a new feature request.')
-        else:
-            messages.error(
-                request, 'Something went wrong. Please try again.')
-        return redirect('tracker')
-    else:
-        form = CreateIssue()
+    """ Render page providing form to user to create a new feature request for their cart """
+    form = Cart_New_feature()
     return render(request, 'create_feature.html', {'form': form})
 
 
