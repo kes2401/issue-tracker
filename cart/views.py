@@ -8,7 +8,7 @@ from django.http import HttpResponse
 
 def view_cart(request):
     """ Renders the cart with all products selected by the logged in user """
-    cart_items = Cart.objects.all().filter(user=request.user)
+    cart_items = Cart.objects.filter(user=request.user)
     return render(request, 'cart.html', {'cart_items': cart_items})
 
 def add_to_cart(request):
@@ -26,7 +26,7 @@ def add_to_cart(request):
         else:
             messages.error(request, 'Something went wrong. Please try again.')
             return redirect('create_feature.html')
-    cart_items = Cart.objects.all().filter(user=request.user)
+    
     return redirect(reverse('view_cart'))
 
 def update_cart(request):
