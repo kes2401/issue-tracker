@@ -79,5 +79,11 @@ def checkout(request):
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
+        cart = Cart.objects.all().filter(user=request.user)
     
-    return render(request, 'checkout.html', {'payment_form': payment_form, 'order_form': order_form, 'publishable': settings.STRIPE_PUBLISHABLE})
+    return render(request, 'checkout.html', {
+        'payment_form': payment_form,
+        'order_form': order_form,
+        'publishable': settings.STRIPE_PUBLISHABLE,
+        'cart': cart
+        })

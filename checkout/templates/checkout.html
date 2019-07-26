@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+- Checkout
+{% endblock %}
+{% block stripe_js %}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="w-100 text-center">
+            <h2 class="mb-4"><strong>Checkout</strong></h2>
+        </div>
+        <div class="col-12 mb-4 text-center">
+            <div class="row d-md-flex flex-row-reverse">
+
+                <div class="col-12 col-md-6">
+                    <legend>Cart Summary</legend>
+                    <ul class="list-group">
+                        {% for item in cart %}
+                        <li class="list-group-item list-group-item-action p-2 p-md-4">
+                            <div class="d-flex flex-row align-items-center">
+                                <div>
+                                    <i
+                                        class="fas fa-plus mr-2 border border-success text-success rounded-circle p-1"></i>
+                                </div>
+                                <div class="w-40">
+                                    <p class="text-secondary pl-2 mb-0">
+                                        <span class="font-weight-bold">{{ item.request_type|title }}</span> -
+                                        {{ item.title }}
+                                    </p>
+                                </div>
+                                <div class="w-40">
+                                    <p class="text-secondary font-weight-bold pl-2 mb-0">
+                                        <strong>€</strong><span>{{ item.amount }}</span>.00
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item list-group-item-action p-2 p-md-4">
+                            <div class="text-center">
+                                <div class="">
+                                    <p class="text-secondary font-weight-bold pl-2 mb-0"><strong>You have no items in
+                                            your
+                                            cart.</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                        <li class="list-group-item list-group-item-action p-2 p-md-4">
+                            <div class="d-flex flex-row align-items-center">
+                                <div>
+                                    <i
+                                        class="far fa-credit-card mr-2 border border-dark text-muted rounded-circle p-1"></i>
+                                </div>
+                                <div class="w-40">
+                                    <p class="text-secondary pl-2 mb-0">
+                                        <span class="font-weight-bold">Total</span>
+                                    </p>
+                                </div>
+                                <div class="w-40">
+                                    <p class="text-secondary font-weight-bold pl-2 mb-0">
+                                        <strong>€</strong><span>100</span>.00
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <br>
+                </div>
+
+
+
+                <div class="col-12 col-md-6">
+                    <form role="form" method="POST" id="payment-form" action="{% url 'checkout' %}">
+                        <legend>Order Details</legend>
+                        <div id="credit-card-errors" style="display:none">
+                            <div class="alert-message block-message error" id="stripe-error-message"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="w-100">
+                                {{ order_form.full_name }}
+                            </div>
+                            <div class="w-100">
+                                {{ order_form.street_address1 }}
+                            </div>
+                            <div class="w-100">
+                                {{ order_form.street_address2 }}
+                            </div>
+                            <div class="w-100">
+                                {{ order_form.town_or_city }}
+                            </div>
+                            <div class="w-100">
+                                {{ order_form.country }}
+                            </div>
+                            <div class="w-100">
+                                {{ order_form.phone_number }}
+                            </div>
+                        </div>
+                        <br>
+                        <legend>Card Details</legend>
+                        <div class="form-group">
+                            <div class="w-100">
+                                {{ payment_form.credit_card_no }}
+                            </div>
+                            <div class="w-100">
+                                <div class="row">
+                                    <div class="col-12 col-md-4">
+                                        {{ payment_form.cvv }}
+                                    </div>
+                                    <div class="col-6 col-md-4">
+                                        <label for="expirt_month">Exp. Month</label>
+                                        {{ payment_form.expiry_month }}
+                                    </div>
+                                    <div class="col-6 col-md-4">
+                                        <label for="expirt_year">Exp. Year</label>
+                                        {{ payment_form.expiry_year }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% if cart|length > 0 %}
+                        <div class="d-flex align-items-center button-container">
+                            <i class="fab fa-cc-stripe text-info mr-3"></i>
+                            <button type="submit" href="{% url 'checkout' %}" class="btn btn-success my-3">Pay
+                                Now</button>
+                        </div>
+                        {% else %}
+                        <div class="d-flex align-items-center button-container">
+                            <i class="fab fa-cc-stripe text-info mr-3"></i>
+                            <a href="{% url 'checkout' %}" class="btn btn-success my-3 disabled">Pay Now</a>
+                        </div>
+                        {% endif %}
+                    </form>
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}
