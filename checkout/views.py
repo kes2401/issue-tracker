@@ -80,11 +80,15 @@ def checkout(request):
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
-        cart = Cart.objects.all().filter(user=request.user)
+        cart = Cart.objects.filter(user=request.user)
+        cart_total = 0
+        for item in cart:
+            cart_total += item.amount
     
     return render(request, 'checkout.html', {
         'payment_form': payment_form,
         'order_form': order_form,
         'publishable': settings.STRIPE_PUBLISHABLE,
-        'cart': cart
+        'cart': cart,
+        'cart_total': cart_total
         })

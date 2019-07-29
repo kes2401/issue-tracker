@@ -52,7 +52,9 @@ INSTALLED_APPS = [
     'issues',
     'stats',
     'storages',
+    'cart',
     'tinymce',
+    'checkout'
 ]
 
 MIDDLEWARE = [
@@ -165,3 +167,6 @@ TINYMCE_DEFAULT_CONFIG = {
     'content_style': '.mcecontentbody{font-size:1rem;}',
     'width': '100%',
 }
+
+STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = os.environ.get('STRIPE_SECRET')
