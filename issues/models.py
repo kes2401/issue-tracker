@@ -17,11 +17,10 @@ class Issue(models.Model):
     title = models.CharField(max_length=40)
     description = HTMLField('Description')
     date_created = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(
-        User, default='Anonymous', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.CharField(
         max_length=11, choices=STATUS_CHOICES, default='pending')
-    amount_paid = models.IntegerField(default=0)
+    total_paid = models.IntegerField(default=0)
     date_complete = models.DateField(null=True, blank=True)
 
     def __str__(self):

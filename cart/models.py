@@ -29,7 +29,6 @@ class Cart(models.Model):
     title = models.CharField(max_length=40)
     description = HTMLField('Description')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Issue, blank=True, null=True, on_delete=models.CASCADE)
     request_type = models.CharField(max_length=12, choices=TYPE_CHOICES)
     amount = models.IntegerField(default=50, validators=[validate_gt_fifty, validate_lt_fifteenhundred])
     

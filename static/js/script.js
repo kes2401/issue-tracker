@@ -512,11 +512,13 @@ $(document).ready(function () {
         $('#id_phone_number').attr('placeholder', 'Phone Number');
 
         $('#id_credit_card_no').attr('placeholder', 'Card Number');
-        $('#id_cvv').attr('placeholder', 'Security Code');
+        $('#id_cvv').attr('placeholder', 'CVV');
 
         $('input, select').addClass('p-2');
         $('input, select').addClass('mb-2');
         $('input').addClass('w-100');
+
+        $('[data-toggle="tooltip"]').tooltip();
     }
 
 });

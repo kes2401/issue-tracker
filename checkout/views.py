@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.utils import timezone
 from cart.models import Cart
+from .models import Order, OrderLineItem
 from issues.models import Issue
 import stripe
 
@@ -18,20 +19,10 @@ def checkout(request):
         payment_form = MakePaymentForm(request.POST)
 
         if order_form.is_valid() and payment_form.is_valid():
-            order_instance = order_form.save(commit=False)
-            order_instance.date = timezone.now()
-            order_instance.user = request.user
-
-            cart_items = Cart.objects.all().filter(user=request.user)
+            cart_items = Cart.objects.filter(user=request.user)
             payment_total = 0
-            order_items = []
             for item in cart_items:
                 payment_total += item.amount
-                order_line_item = OrderLineItem(
-                    order = order_instance,
-                    cart_item = item
-                )
-                order_items.append(order_line_item)
 
             try: 
                 customer = stripe.Charge.create(
@@ -45,10 +36,11 @@ def checkout(request):
             
             if customer.paid:
                 messages.success(request, 'You have successfully paid.')
+
+                order_instance = order_form.save(commit=False)
+                order_instance.date = timezone.now()
+                order_instance.user = request.user
                 order_instance.save()
-                
-                for item in order_items:
-                    item.save()
                 
                 for item in cart_items:
                     if item.request_type == 'new feature':
@@ -58,9 +50,18 @@ def checkout(request):
                             description = item.description,
                             date_created = timezone.now(),
                             author = request.user,
-                            amount_paid = item.amount
+                            total_paid = item.amount
                         )
                         new_feature.save()
+
+                        order_line_item = OrderLineItem(
+                            order = order_instance,
+                            issue = new_feature,
+                            request_type = item.request_type,
+                            amount_paid = item.amount
+                        )
+                        order_line_item.save()
+
                     elif item.request_type == 'feature vote':
                         # --- UPDATE THE ITEM ALREADY IN THE ISSUE TABLE ----
                         # this_item = 
@@ -73,8 +74,8 @@ def checkout(request):
                 message.error(request, 'Unable to take payment.')
         
         else:
-            print(payment_form.errors)
             messages.error(request, 'We were unable to take a payment with that card.')
+            cart = Cart.objects.all().filter(user=request.user)
 
     else:
         payment_form = MakePaymentForm()
