@@ -81,6 +81,7 @@ def checkout(request):
         payment_form = MakePaymentForm()
         order_form = OrderForm()
         cart = Cart.objects.filter(user=request.user)
+        cart_count = Cart.objects.filter(user=request.user).count()
         cart_total = 0
         for item in cart:
             cart_total += item.amount
@@ -90,5 +91,6 @@ def checkout(request):
         'order_form': order_form,
         'publishable': settings.STRIPE_PUBLISHABLE,
         'cart': cart,
-        'cart_total': cart_total
-        })
+        'cart_total': cart_total,
+        'cart_count': cart_count
+    })

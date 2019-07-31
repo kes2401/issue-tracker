@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from issues.models import Issue, IssueComment, IssueVote
+from cart.models import Cart
 from operator import itemgetter
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Count
@@ -15,9 +16,15 @@ def stats(request):
     all_features_chart = '' + str(Issue.objects.filter(issue_type='feature').filter(status='pending').count()) + ',' + str(Issue.objects.filter(issue_type='feature').filter(
         status='in progress').count()) + ',' + str(Issue.objects.filter(issue_type='feature').filter(status='closed').count())
 
+    if request.user.is_authenticated:
+        cart_count = Cart.objects.filter(user=request.user).count()
+    else:
+        cart_count = 0 
+
     return render(request, 'stats.html', {
         'all_bugs_chart': all_bugs_chart,
-        'all_features_chart': all_features_chart
+        'all_features_chart': all_features_chart,
+        'cart_count': cart_count
     })
 
 

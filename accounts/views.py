@@ -5,6 +5,7 @@ from accounts.forms import UserLoginForm, UserRegistrationForm
 from django.contrib.auth.models import User
 from issues.models import Issue
 from checkout.models import Order, OrderLineItem
+from cart.models import Cart
 
 
 def login(request):
@@ -69,6 +70,7 @@ def profile(request):
     user_orders = Order.objects.filter(user=current_user)
     feature_orders = OrderLineItem.objects.filter(order__in=user_orders).filter(request_type='new feature')
     vote_orders = OrderLineItem.objects.filter(order__in=user_orders).filter(request_type='feature vote')
+    cart_count = Cart.objects.filter(user=request.user).count()
 
     total_paid_features = 0
     total_paid_votes = 0
@@ -82,5 +84,6 @@ def profile(request):
         'feature_orders': feature_orders,
         'vote_orders': vote_orders,
         'total_paid_features': total_paid_features,
-        'total_paid_votes': total_paid_votes
+        'total_paid_votes': total_paid_votes,
+        'cart_count': cart_count
     })

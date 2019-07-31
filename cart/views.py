@@ -6,10 +6,15 @@ from .models import Cart
 from .forms import Cart_New_feature
 from django.http import HttpResponse
 
+@login_required
 def view_cart(request):
     """ Renders the cart with all products selected by the logged in user """
     cart_items = Cart.objects.filter(user=request.user)
-    return render(request, 'cart.html', {'cart_items': cart_items})
+    cart_count = Cart.objects.filter(user=request.user).count()
+    return render(request, 'cart.html', {
+        'cart_items': cart_items,
+        'cart_count': cart_count
+    })
 
 def add_to_cart(request):
     """ Adds an item to the logged in user's cart """

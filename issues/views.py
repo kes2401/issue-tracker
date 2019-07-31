@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from .forms import CreateIssue
 from .models import Issue, IssueComment, IssueVote
 from cart.forms import Cart_New_feature
+from cart.models import Cart
 from django.http import HttpResponse
 
 
@@ -21,7 +22,17 @@ def tracker(request):
     for feature in features:
         feature.comments = comments.filter(issue=feature.pk).count()
         feature.votes = votes.filter(issue=feature.pk).count()
-    return render(request, 'tracker.html', {'bugs': bugs, 'features': features})
+
+    if request.user.is_authenticated:
+        cart_count = Cart.objects.filter(user=request.user).count()
+    else:
+        cart_count = 0 
+
+    return render(request, 'tracker.html', {
+        'bugs': bugs,
+        'features': features,
+        'cart_count': cart_count
+    })
 
 
 @login_required
@@ -42,14 +53,22 @@ def create_bug(request):
         return redirect('tracker')
     else:
         form = CreateIssue()
-    return render(request, 'create_bug.html', {'form': form})
+        cart_count = Cart.objects.filter(user=request.user).count()
+    return render(request, 'create_bug.html', {
+        'form': form,
+        'cart_count': cart_count
+    })
 
 
 @login_required
 def create_feature(request):
     """ Render page providing form to user to create a new feature request for their cart """
     form = Cart_New_feature()
-    return render(request, 'create_feature.html', {'form': form})
+    cart_count = Cart.objects.filter(user=request.user).count()    
+    return render(request, 'create_feature.html', {
+        'form': form,
+        'cart_count': cart_count
+    })
 
 
 @ensure_csrf_cookie
@@ -64,7 +83,19 @@ def bug_detail(request, id):
             break
     else:
         user_vote = False
-    return render(request, 'issue_detail.html', {'issue': bug, 'comments': comments, 'votes_count': votes_count, 'user_vote': user_vote})
+
+    if request.user.is_authenticated:
+        cart_count = Cart.objects.filter(user=request.user).count()
+    else:
+        cart_count = 0 
+
+    return render(request, 'issue_detail.html', {
+        'issue': bug,
+        'comments': comments,
+        'votes_count': votes_count,
+        'user_vote': user_vote,
+        'cart_count': cart_count
+    })
 
 
 @ensure_csrf_cookie
@@ -79,7 +110,19 @@ def feature_detail(request, id):
             break
     else:
         user_vote = False
-    return render(request, 'issue_detail.html', {'issue': feature, 'comments': comments, 'votes_count': votes_count, 'user_vote': user_vote})
+    
+    if request.user.is_authenticated:
+        cart_count = Cart.objects.filter(user=request.user).count()
+    else:
+        cart_count = 0 
+
+    return render(request, 'issue_detail.html', {
+        'issue': feature,
+        'comments': comments,
+        'votes_count': votes_count,
+        'user_vote': user_vote,
+        'cart_count': cart_count
+    })
 
 
 def add_comment(request, id):
