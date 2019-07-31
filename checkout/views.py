@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from .forms import MakePaymentForm, OrderForm
 from django.conf import settings
@@ -6,7 +6,8 @@ from django.contrib import messages
 from django.utils import timezone
 from cart.models import Cart
 from .models import Order, OrderLineItem
-from issues.models import Issue
+from issues.models import Issue, IssueVote
+from django.contrib.auth.models import User
 import stripe
 
 
@@ -63,9 +64,25 @@ def checkout(request):
                         order_line_item.save()
 
                     elif item.request_type == 'feature vote':
-                        # --- UPDATE THE ITEM ALREADY IN THE ISSUE TABLE ----
-                        # this_item = 
-                        print('This is a feature upvote.')
+                        this_feature = Issue.objects.get(pk=item.feature_id)
+
+                        current_amount = this_feature.total_paid
+                        new_amount = current_amount + item.amount
+                        Issue.objects.filter(pk=item.feature_id).update(total_paid=new_amount)
+
+                        new_vote = IssueVote()
+                        current_user = User.objects.get(username=request.user)
+                        new_vote.issue = this_feature
+                        new_vote.user = current_user
+                        new_vote.save()
+
+                        order_line_item = OrderLineItem(
+                            order = order_instance,
+                            issue = this_feature,
+                            request_type = item.request_type,
+                            amount_paid = item.amount
+                        )
+                        order_line_item.save()
 
                 Cart.objects.filter(user=request.user).delete()
 

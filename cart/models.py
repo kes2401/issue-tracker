@@ -31,7 +31,7 @@ class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     request_type = models.CharField(max_length=12, choices=TYPE_CHOICES)
     amount = models.IntegerField(default=50, validators=[validate_gt_fifty, validate_lt_fifteenhundred])
-    
+    feature_id = models.IntegerField(default=None)
 
     def __str__(self):
         return self.title

@@ -71,7 +71,7 @@
                 <tbody>
                     {% for order in feature_orders %}
                     <tr>
-                        <td>{{ order.pk }}</td>
+                        <td>{{ order.issue.pk }}</td>
                         <td>{{ order.issue.title }}</td>
                         <td>{{ order.issue.status }}</td>
                         <td>€ {{ order.amount_paid }}.00</td>
@@ -109,7 +109,7 @@
                 <tbody>
                     {% for order in vote_orders %}
                     <tr>
-                        <td>{{ order.pk }}</td>
+                        <td>{{ order.issue.pk }}</td>
                         <td>{{ order.issue.title }}</td>
                         <td>{{ order.issue.status }}</td>
                         <td>€ {{ order.amount_paid }}.00</td>

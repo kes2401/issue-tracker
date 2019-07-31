@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from issues.models import Issue
 from .models import Cart
 from .forms import Cart_New_feature
 from django.http import HttpResponse
@@ -32,6 +33,21 @@ def add_to_cart(request):
             messages.error(request, 'Something went wrong. Please try again.')
             return redirect('create_feature.html')
     
+    return redirect(reverse('view_cart'))
+
+def add_vote_to_cart(request, id):
+    """ Adds a vote to the logged in user's cart """
+    current_feature = Issue.objects.get(pk=id)
+    new_cart_item = Cart(
+        title = current_feature.title,
+        description = current_feature.description,
+        user = request.user,
+        request_type = 'feature vote',
+        feature_id = id
+    )
+    new_cart_item.save()
+    messages.success(request, 'You have added a new item to your cart.')
+
     return redirect(reverse('view_cart'))
 
 def update_cart(request):

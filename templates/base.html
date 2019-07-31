@@ -50,7 +50,7 @@
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link mr-5" href="{% url 'view_cart' %}">
-                            <strong><i class="fas fa-shopping-cart"></i>Cart</strong>
+                            <strong><i class="fas fa-shopping-cart"></i> Cart</strong>
                             {% if cart_count > 0 %}
                             <sup><span
                                     class="badge badge-pill bg-secondary text-primary p-1"><strong>{{ cart_count }}</strong></span></sup>

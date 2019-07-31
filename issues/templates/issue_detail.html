@@ -58,6 +58,45 @@
                         {% elif not user.is_authenticated %}
                         <a class="disabled" data-toggle="tooltip" data-placement="top" title=""
                             data-original-title="Please Log In"><i class="far fa-thumbs-up fa-2x text-muted"></i></a>
+                        {% elif user == issue.author %}
+                        <a class="disabled"><i class="far fa-thumbs-up fa-2x text-muted"></i></a>
+                        {% else %}
+                        {% if issue.issue_type == 'feature' %}
+                        {% if user_vote == True %}
+                        <a class="disabled"><i class="fas fa-thumbs-up fa-2x text-muted"></i></a>
+                        {% else %}
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#featureVoteModal"><i
+                                class="far fa-thumbs-up fa-2x text-muted"></i></a>
+                        <!-- Modal -->
+                        <div class="modal fade" id="featureVoteModal" tabindex="-1" role="dialog"
+                            aria-labelledby="featureVoteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="featureVoteModalLabel">Feature Vote Payment Required
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Voting on a new feature requires a payment of at least € 50.00. The highest
+                                            funded
+                                            new feature request will be the next feature to go into development. You can
+                                            choose to pay more if you wish.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Go
+                                            Back</button>
+                                        <a href="{% url 'add_vote_to_cart' issue.pk %}" class="btn btn-success">Add to
+                                            Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endif %}
+
                         {% else %}
                         {% if user_vote == True %}
                         <a class="vote-btn" href="javascript:void(0)" data-vote-status="true"><i
@@ -66,6 +105,9 @@
                         <a class="vote-btn" href="javascript:void(0)" data-vote-status="false"><i
                                 class="far fa-thumbs-up fa-2x text-muted"></i></a>
                         {% endif %}
+                        {% endif %}
+
+
                         {% endif %}
                         <span id="vote-count">{{ votes_count }}</span>
                     </div>
