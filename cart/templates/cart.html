@@ -40,13 +40,15 @@
                                 </div>
                             </div>
                             <div class="ml-1 ml-md-2">
-                                <button type="submit" class="btn btn-info text-white"><i
+                                <button type="submit" class="btn btn-info text-white" data-toggle="tooltip"
+                                    data-placement="bottom" title="" data-original-title="Re-calculate payment"><i
                                         class="fas fa-sync"></i></button>
                             </div>
                         </form>
                         <div class="ml-1 ml-md-3">
                             <a href="{% url 'remove_from_cart' item.pk %}" type="button"
-                                class="btn btn-danger text-white"><i class="far fa-trash-alt"></i></a>
+                                class="btn btn-danger text-white" data-toggle="tooltip" data-placement="bottom" title=""
+                                data-original-title="Delete item from Cart"><i class="far fa-trash-alt"></i></a>
                         </div>
                     </div>
                 </li>
@@ -72,10 +74,6 @@
                 <a href="{% url 'checkout' %}" class="btn btn-success my-3 disabled">Checkout</a>
             </div>
             {% endif %}
-
-
-
-
 
         </div>
     </div>
