@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('request_type', models.CharField(choices=[('new feature', 'New Feature'), ('feature vote', 'Feature Vote')], max_length=12)),
                 ('amount', models.IntegerField(default=50, validators=[cart.models.Cart.validate_gt_fifty, cart.models.Cart.validate_lt_fifteenhundred])),
                 ('product', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='issues.Issue')),
-                ('user', models.ForeignKey(default='Anonymous', on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]
