@@ -6,7 +6,7 @@
 <div class="container mb-4">
 
     <div class="row">
-        <div class="border heading-border mx-3 my-3 py-4 px-5 text-center">
+        <div class="border heading-border mx-3 my-3 py-4 px-sm-5 text-center">
             <h3><strong>UnicornAttractor Issue Tracker</strong></h3>
             <p class="text-secondary w-75 mx-auto">Here you can view and track Bugs that have been reported and New
                 Features that have been requested. Bug Reports and Feature Requests will be prioritized in order of the
@@ -16,7 +16,7 @@
     </div>
 
     <div class="row">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 mb-4">
             <ul class="list-group d-flex flex-column">
                 <li class="list-group-item list-group-item-secondary">
                     <div class="d-flex flex-row text-center">
@@ -37,7 +37,8 @@
                         <div>
                             <i class="fas fa-bug mr-2 border border-info text-info rounded-circle p-1"></i>
                         </div>
-                        <h6><a href="bug_detail/{{ bug.pk }}/"
+                        <h6 class="issue-title text-wrap">
+                            <a href="bug_detail/{{ bug.pk }}/"
                                 class="text-decoration-none text-secondary font-weight-bold"><strong>{{ bug.title }}</strong></a>
                         </h6>
                         <div class="ml-auto min-width-90 d-flex justify-content-center">
@@ -79,7 +80,7 @@
             {% endif %}
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 mb-4">
             <ul class="list-group d-flex flex-column">
                 <li class="list-group-item list-group-item-secondary">
                     <div class="d-flex flex-row text-center">
@@ -100,7 +101,7 @@
                         <div>
                             <i class="fas fa-plus mr-2 border border-success text-success rounded-circle p-1"></i>
                         </div>
-                        <h6>
+                        <h6 class="issue-title text-wrap">
                             <a href="feature_detail/{{ feature.pk }}/"
                                 class="text-decoration-none text-secondary font-weight-bold"><strong>{{ feature.title }}</strong></a>
                         </h6>

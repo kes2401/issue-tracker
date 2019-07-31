@@ -118,7 +118,9 @@ td.mceToolbar {
     height: 32px !important;
 }
 
-
+.issue-title {
+    overflow-wrap: break-word;
+}
 
 /* Utility Classes */
 
@@ -160,10 +162,49 @@ div .w-40 {
 
  /* Media Queries  */
 
-@media (max-width: 767px) {
+ @media (max-width: 767px) {
     .xs-center { text-align: center; }
+}
+
+@media (min-width: 993px) {
+    .issue-title { 
+        max-width: 250px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .issue-title { 
+        max-width: 75px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .issue-title { 
+        max-width: 75px;
+    }
+}
+
+@media (min-width: 571px) and (max-width: 767px) {
+    .issue-title { 
+        max-width: 250px;
+    }
+}
+
+@media (min-width: 478px) and (max-width: 570px) {
+    .issue-title { 
+        max-width: 150px;
+    }
 }
 
 @media (max-width: 477px) {
     .brand-logo { max-width: 75vw; }
+    .issue-title { 
+        max-width: 100px;
+    }
+}
+
+@media (max-width: 380px) {
+    .issue-title { 
+        max-width: 65px;
+    }
 }
