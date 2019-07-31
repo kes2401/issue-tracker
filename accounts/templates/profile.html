@@ -54,6 +54,7 @@
             </table>
         </div>
     </div>
+
     <div class="row">
         <div class="col-12 my-4">
             <h2 class="text-center my-3"><strong>New Feature Orders</strong></h2>
@@ -68,19 +69,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for feature in user_features %}
+                    {% for order in feature_orders %}
                     <tr>
-                        <td>{{ feature.pk }}</td>
-                        <td>{{ feature.title }}</td>
-                        <td>{{ feature.status }}</td>
-                        <td>€ 50.00</td>
-                        <td><a href="/issues/tracker/feature_detail/{{ feature.pk }}/"
+                        <td>{{ order.pk }}</td>
+                        <td>{{ order.issue.title }}</td>
+                        <td>{{ order.issue.status }}</td>
+                        <td>€ {{ order.amount_paid }}.00</td>
+                        <td><a href="/issues/tracker/feature_detail/{{ order.issue.pk }}/"
                                 class="btn btn-sm btn-success mx-auto">View</a></td>
                     </tr>
                     {% empty %}
                     <tr>
                         <td></td>
-                        <td class="py-3">You have not requested any new Features.</td>
+                        <td class="py-3">You have not requested any new features.</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -88,8 +89,47 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <p class="text-right mr-5"><strong>Total Paid: € 150.00</strong></p>
+            <p class="text-right mr-5"><strong>Total Paid: € {{ total_paid_features }}.00</strong></p>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-12 my-4">
+            <h2 class="text-center my-3"><strong>Feature Vote Orders</strong></h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-active">
+                        <th scope="col" class="w-15">ID</th>
+                        <th scope="col" class="w-40">Feature Title</th>
+                        <th scope="col" class="w-25">Status</th>
+                        <th scope="col" class="w-10">Paid</th>
+                        <th scope="col" class="w-10">View</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in vote_orders %}
+                    <tr>
+                        <td>{{ order.pk }}</td>
+                        <td>{{ order.issue.title }}</td>
+                        <td>{{ order.issue.status }}</td>
+                        <td>€ {{ order.amount_paid }}.00</td>
+                        <td><a href="/issues/tracker/feature_detail/{{ order.issue.pk }}/"
+                                class="btn btn-sm btn-success mx-auto">View</a></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td></td>
+                        <td class="py-3">You have not voted on any new features.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p class="text-right mr-5"><strong>Total Paid: € {{ total_paid_votes }}.00</strong></p>
+        </div>
+    </div>
+
 </div>
 {% endblock %}
