@@ -50,7 +50,8 @@
                         <li class="list-group-item list-group-item-action p-2 p-md-4">
                             <div class="d-flex flex-row align-items-center">
                                 <div>
-                                    <i class="far fa-credit-card mr-2 border border-dark text-muted rounded-circle p-1"></i>
+                                    <i
+                                        class="far fa-credit-card mr-2 border border-dark text-muted rounded-circle p-1"></i>
                                 </div>
                                 <div class="w-40">
                                     <p class="text-secondary pl-2 mb-0">
@@ -151,4 +152,7 @@
     //]]>
 </script>
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock %}
+{% block page_js %}
+<script src="{% static 'js/checkout.js' %}"></script>
 {% endblock %}
