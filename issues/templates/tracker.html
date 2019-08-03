@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
 - Tracker
 {% endblock %}
@@ -19,15 +20,103 @@
         <div class="col-12 col-md-6 mb-4">
             <ul class="list-group d-flex flex-column">
                 <li class="list-group-item list-group-item-secondary">
-                    <div class="d-flex flex-row text-center">
+                    <div class="d-lg-flex flex-lg-row text-center">
                         <h4 class="text-dark"><strong>Bugs</strong></h4>
                         <div class="ml-auto pt-2">
-                            <a href="#" class="mx-1 text-dark text-decoration-none">Search <i
-                                    class="fas fa-caret-down"></i></a>
-                            <a href="#" class="mx-3 text-dark text-decoration-none">Status <i
-                                    class="fas fa-caret-down"></i></a>
-                            <a href="#" class="mx-1 text-dark text-decoration-none">Sort <i
-                                    class="fas fa-caret-down"></i></a>
+                            <form action="" method="POST" id="bug-filter-form">
+                                {% csrf_token %}
+                                <!-- Search filter -->
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn btn-sm bg-transparent dropdown-toggle" type="button"
+                                        id="bugSearchDropdownButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Search
+                                    </button>
+                                    <div class="dropdown-menu px-1" aria-labelledby="bugSearchDropdownButton">
+                                        <input type="text" class="form-control" id="bugSearchDropdownInput"
+                                            name="bug-search" placeholder="Search title">
+                                    </div>
+                                </div>
+                                <!-- Status filter -->
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn btn-sm bg-transparent dropdown-toggle" type="button"
+                                        id="bugStatusDropdownButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Status
+                                    </button>
+                                    <div class="dropdown-menu px-1" aria-labelledby="bugStatusDropdownButton">
+                                        <div class="custom-control bug-status-radio">
+                                            <input type="radio" id="bugStatusPending" name="bugStatus"
+                                                class="custom-control-input bug-status" value="pending">
+                                            <label class="custom-control-label"
+                                                for="bugStatusPending"><small>Pending</small></label>
+                                        </div>
+                                        <div class="custom-control bug-status-radio">
+                                            <input type="radio" id="bugStatusInProgress" name="bugStatus"
+                                                class="custom-control-input bug-status" value="in-progress">
+                                            <label class="custom-control-label" for="bugStatusInProgress"><small>In
+                                                    Progess</small></label>
+                                        </div>
+                                        <div class="custom-control bug-status-radio">
+                                            <input type="radio" id="bugStatusClosed" name="bugStatus"
+                                                class="custom-control-input bug-status" value="closed">
+                                            <label class="custom-control-label"
+                                                for="bugStatusClosed"><small>Closed</small></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Sort filter -->
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn btn-sm bg-transparent dropdown-toggle" type="button"
+                                        id="bugSortDropdownButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Sort
+                                    </button>
+                                    <div class="dropdown-menu px-1" aria-labelledby="bugSortDropdownButton">
+                                        <div class="custom-control bug-sort-radio">
+                                            <input type="radio" id="bugSortNameDown" name="bugSort"
+                                                class="custom-control-input bug-sort" value="name-down">
+                                            <label class="custom-control-label" for="bugSortNameDown"><small>Name <i
+                                                        class="fas fa-arrow-down"></i></small></label>
+                                        </div>
+                                        <div class="custom-control bug-sort-radio">
+                                            <input type="radio" id="bugSortNameUp" name="bugSort"
+                                                class="custom-control-input bug-sort" value="name-up">
+                                            <label class="custom-control-label" for="bugSortNameUp"><small>Name <i
+                                                        class="fas fa-arrow-up"></i></small></label>
+                                        </div>
+                                        <div class="custom-control bug-sort-radio">
+                                            <input type="radio" id="bugSortVotesDown" name="bugSort"
+                                                class="custom-control-input bug-sort" value="votes-down">
+                                            <label class="custom-control-label" for="bugSortVotesDown"><small>Votes <i
+                                                        class="fas fa-arrow-down"></i></small></label>
+                                        </div>
+                                        <div class="custom-control bug-sort-radio">
+                                            <input type="radio" id="bugSortVotesUp" name="bugSort"
+                                                class="custom-control-input bug-sort" value="votes-up">
+                                            <label class="custom-control-label" for="bugSortVotesUp"><small>Votes <i
+                                                        class="fas fa-arrow-up"></i></small></label>
+                                        </div>
+                                        <div class="custom-control bug-sort-radio">
+                                            <input type="radio" id="bugSortCommentsDown" name="bugSort"
+                                                class="custom-control-input bug-sort" value="comments-down">
+                                            <label class="custom-control-label"
+                                                for="bugSortCommentsDown"><small>Comments
+                                                    <i class="fas fa-arrow-down"></i></small></label>
+                                        </div>
+                                        <div class="custom-control bug-sort-radio">
+                                            <input type="radio" id="bugSortCommentsUp" name="bugSort"
+                                                class="custom-control-input bug-sort" value="comments-up">
+                                            <label class="custom-control-label" for="bugSortCommentsUp"><small>Comments
+                                                    <i class="fas fa-arrow-up"></i></small></label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-sm btn-secondary mx-2 d-none">Submit</button>
+
+                                <a href="{% url 'tracker' %}" class="btn btn-sm btn-secondary mx-2">Reset</a>
+                            </form>
                         </div>
                     </div>
                 </li>
@@ -63,7 +152,7 @@
                 {% empty %}
                 <li class="list-group-item">
                     <div class="text-center">
-                        <p class="pt-2">There are no reported bugs open.</p>
+                        <p class="pt-2">There are no reported bugs open, or none that match the search criteria.</p>
                     </div>
                 </li>
                 {% endfor %}
@@ -86,12 +175,101 @@
                     <div class="d-flex flex-row text-center">
                         <h4 class="text-dark"><strong>Features</strong></h4>
                         <div class="ml-auto pt-2">
-                            <a href="#" class="mx-1 text-dark text-decoration-none">Search <i
-                                    class="fas fa-caret-down"></i></a>
-                            <a href="#" class="mx-3 text-dark text-decoration-none">Status <i
-                                    class="fas fa-caret-down"></i></a>
-                            <a href="#" class="mx-1 text-dark text-decoration-none">Sort <i
-                                    class="fas fa-caret-down"></i></a>
+                            <form action="" method="POST" id="feature-filter-form">
+                                {% csrf_token %}
+                                <!-- Search filter -->
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn btn-sm bg-transparent dropdown-toggle" type="button"
+                                        id="featureSearchDropdownButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Search
+                                    </button>
+                                    <div class="dropdown-menu px-1" aria-labelledby="featureSearchDropdownButton">
+                                        <input type="text" class="form-control" id="featureSearchDropdownInput"
+                                            name="feature-search" placeholder="Search title">
+                                    </div>
+                                </div>
+                                <!-- Status filter -->
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn btn-sm bg-transparent dropdown-toggle" type="button"
+                                        id="featureStatusDropdownButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Status
+                                    </button>
+                                    <div class="dropdown-menu px-1" aria-labelledby="featureStatusDropdownButton">
+                                        <div class="custom-control feature-status-radio">
+                                            <input type="radio" id="featureStatusPending" name="featureStatus"
+                                                class="custom-control-input feature-status" value="pending">
+                                            <label class="custom-control-label"
+                                                for="featureStatusPending"><small>Pending</small></label>
+                                        </div>
+                                        <div class="custom-control feature-status-radio">
+                                            <input type="radio" id="featureStatusInProgress" name="featureStatus"
+                                                class="custom-control-input feature-status" value="in-progress">
+                                            <label class="custom-control-label" for="featureStatusInProgress"><small>In
+                                                    Progess</small></label>
+                                        </div>
+                                        <div class="custom-control feature-status-radio">
+                                            <input type="radio" id="featureStatusClosed" name="featureStatus"
+                                                class="custom-control-input feature-status" value="closed">
+                                            <label class="custom-control-label"
+                                                for="featureStatusClosed"><small>Closed</small></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Sort filter -->
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn btn-sm bg-transparent dropdown-toggle" type="button"
+                                        id="featureSortDropdownButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Sort
+                                    </button>
+                                    <div class="dropdown-menu px-1" aria-labelledby="featureSortDropdownButton">
+                                        <div class="custom-control feature-sort-radio">
+                                            <input type="radio" id="featureSortNameDown" name="featureSort"
+                                                class="custom-control-input feature-sort" value="name-down">
+                                            <label class="custom-control-label" for="featureSortNameDown"><small>Name <i
+                                                        class="fas fa-arrow-down"></i></small></label>
+                                        </div>
+                                        <div class="custom-control feature-sort-radio">
+                                            <input type="radio" id="featureSortNameUp" name="featureSort"
+                                                class="custom-control-input feature-sort" value="name-up">
+                                            <label class="custom-control-label" for="featureSortNameUp"><small>Name <i
+                                                        class="fas fa-arrow-up"></i></small></label>
+                                        </div>
+                                        <div class="custom-control feature-sort-radio">
+                                            <input type="radio" id="featureSortVotesDown" name="featureSort"
+                                                class="custom-control-input feature-sort" value="votes-down">
+                                            <label class="custom-control-label" for="featureSortVotesDown"><small>Votes
+                                                    <i class="fas fa-arrow-down"></i></small></label>
+                                        </div>
+                                        <div class="custom-control feature-sort-radio">
+                                            <input type="radio" id="featureSortVotesUp" name="featureSort"
+                                                class="custom-control-input feature-sort" value="votes-up">
+                                            <label class="custom-control-label" for="featureSortVotesUp"><small>Votes <i
+                                                        class="fas fa-arrow-up"></i></small></label>
+                                        </div>
+                                        <div class="custom-control feature-sort-radio">
+                                            <input type="radio" id="featureSortCommentsDown" name="featureSort"
+                                                class="custom-control-input feature-sort" value="comments-down">
+                                            <label class="custom-control-label"
+                                                for="featureSortCommentsDown"><small>Comments
+                                                    <i class="fas fa-arrow-down"></i></small></label>
+                                        </div>
+                                        <div class="custom-control feature-sort-radio">
+                                            <input type="radio" id="featureSortCommentsUp" name="featureSort"
+                                                class="custom-control-input feature-sort" value="comments-up">
+                                            <label class="custom-control-label"
+                                                for="featureSortCommentsUp"><small>Comments <i
+                                                        class="fas fa-arrow-up"></i></small></label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-sm btn-secondary mx-2 d-none">Submit</button>
+
+                                <a href="{% url 'tracker' %}" class="btn btn-sm btn-secondary mx-2">Reset</a>
+                            </form>
                         </div>
                     </div>
                 </li>
@@ -128,7 +306,8 @@
                 {% empty %}
                 <li class="list-group-item">
                     <div class="text-center">
-                        <p class="pt-2">There are no new feature requests open.</p>
+                        <p class="pt-2">There are no new feature requests open, or none that match the search criteria.
+                        </p>
                     </div>
                 </li>
                 {% endfor %}
@@ -147,4 +326,7 @@
     </div>
 
 </div>
+{% endblock %}
+{% block page_js %}
+<script src="{% static 'js/tracker.js' %}"></script>
 {% endblock %}
