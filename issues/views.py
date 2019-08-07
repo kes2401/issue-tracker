@@ -14,9 +14,12 @@ from django.http import HttpResponse
 
 def tracker(request):
     """ Renders the Tracker page that tracks and manages all bug reports and feature requests """
-    bugs = Issue.objects.filter(issue_type='bug')
-    features = Issue.objects.filter(issue_type='feature')
 
+    # retrieve bugs & features, and sort by date created, with most recent first
+    bugs = Issue.objects.filter(issue_type='bug').order_by('-date_created', 'title')
+    features = Issue.objects.filter(issue_type='feature').order_by('-date_created', 'title')
+
+    # filtering/sorting functionality
     if request.method == 'POST':
         if request.POST.get('bug-search') != None:
             bug_search_term = request.POST.get('bug-search')
@@ -65,6 +68,7 @@ def tracker(request):
         elif request.POST.get('featureSort') == 'comments-up':
             features = features.annotate(num_comments=Count('issuecomment')).order_by('num_comments')
 
+    # add upvote count and comment count to issues
     comments = IssueComment.objects.all()
     votes = IssueVote.objects.all()
     for bug in bugs:
@@ -74,6 +78,7 @@ def tracker(request):
         feature.comments = comments.filter(issue=feature.pk).count()
         feature.votes = votes.filter(issue=feature.pk).count()
 
+    # initialise cart content count
     if request.user.is_authenticated:
         cart_count = Cart.objects.filter(user=request.user).count()
     else:
