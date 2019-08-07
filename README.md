@@ -13,15 +13,56 @@ The live project can be viewed [here](https://issue-tracker-kes.herokuapp.com/).
 
 ## UX
 
-...
+This application was built to allow users view and create issues (bug reports or new feature requests) for the fictional UnicornAttractor web app. It also allows to comment on and upvote on issues as they wish. The application provides a registration page for new users to register on the site, and a log in page to sign in after they have registered. If a user forgets their password they can access the password reset feature. Any visitor can browse the issues currently created on the site but logged in users, aside from adding new issues, can also comments on issues and use the "like" button system to upvote.
 
+When viewing all issues on the site a user can search issues by title using a free text input, can filter all issues by status ('Pending', 'In Progress' or 'Closed') or sort all issues by title, upvote count or comment count, all in asceding or descending order. There is also a reset button to reset your sorting or filtering of the lists to its default state, which is ordered by creation date, most recent first.
+
+Clicking on any issue will take the user to an issue detail page which provides a full description of the issue as recorded by the original poster. Visitors can view a list of comments from users relating to that issues, and all authentication users can comment on the issue or click a "like" button to upvote that issue.
+
+For new feature requests, and to upvote on new feature requests already on the site, payment is required by the user. Once a user attempts to create a new feature on the site or upvote a new feature request on the site a modal will appear advising the user that a payment is required. They are then brought to a very clean and simple shopping cart allowing them to change the amount they wish to pay for any individual item, delete any item from their cart, or proceed to the checkout screen that again will provide them with a very clean and simple interface to enter their order details and card payment information. If a user logs out at any time while there are items still in their cart then once they log back in again that data will persist and their cart will have the same state they left it in the last time they were logged in. Users also have their own Profile page which displays all their bug reports, feature requests, feature upvotes where they can also see how much was paid, along with a total paid amount, as well as having a button to link them directly to the related feature for each record.
+
+The site also provide a Statistics page where any user or visitor to view stats on the issue tracker application, including the time spent by developers across bug fixes and new feature development, the top votes bug reports and feature requests, as well as the history of the closing of issues by the developer team. These charts and graphs are generated dynamically when the page is requested so it will show the most up-to-date information.
 
 ##### User Stories
 
 As a user I can:
-- ...
-- ...
+- register as a user on the site
+- log in to the site once registered
+- change password to the site if I have forgotten my password
+- add new bug reports to the site
+- add new feature requests to the site
+- click on a bug report to see a description
+- click on a new feature request to see a description
+- upvote on bug reports and/or on new feature requests
+- comment on bug reports and/or feature requests
+- view a list of bugs already reported on the site
+- view a list of new features already requested on the site
+- see how many upvotes a bug report or feature requests has received
+- see how many comments a bug report or feature requests has received
+- search the lists of bug reports or feature requests by title
+- filter the lists of bug reports or feature requests by status ('pending', 'in progress' or 'closed')
+- sort the lists of bug reports or feature requests by title, number of comments or number of upvotes
+- filter the list of recipes by cuisine type
+- view a statistics page showing stats on developer time, top bug reports and features requests, and progress/status of issues
+- add new feature requests or upvotes for present feature reuqests to a shopping cart for payment
+- process payment safely by simple card payment
+- view a profile page with my basic user information
 
+This site was built on the basis of ideas from initial wireframes created in [Pencil](https://pencil.evolus.vn/) and exported image files for can be found in the 'design' folder in the repo and can also be seen below:
+
+![wireframe prototype 1](design/indexpage.png)
+![wireframe prototype 2](design/loginpage.png)
+![wireframe prototype 3](design/registerpage.png)
+![wireframe prototype 4](design/trackerpage.png)
+![wireframe prototype 5](design/detailspage.png)
+![wireframe prototype 6](design/statspage.png)
+![wireframe prototype 7](design/checkoutpage.png)
+
+##### Key Aspects of UX Development
+
+- The "like" button system for upvoting issues is built in a way that when the issue detail page is requested the application will check on the back-end if the user has already upvoted on that issue, and if the user has then a HTML data attribute is given a value of `true` so that this status is visible to the user. If a user clicks the button again they remove their vote, or if they haven't previously upvoted the issue they will add a new vote. JavaScript code on the front-end will manage the state of the voting button by updating the appearance of the button and updating the vote status data attribute which will then be used to decide whether an 'add vote' or 'remove vote' POST request should be made accordingly to the server to add or remove the vote in the database.
+- The comment field and the button to submit a new comment on the issue detail page will both be disabled when no user is logged in, or when an issue has already been closed. When a user is authenticated and the first is first loaded the comment input field will be active but the comment submit button will be disabled. When a user begins to type in the comment field the submit button will become active as long as there is at least one character typed into the comment input field. The state of the button is managed and updated by some front-end JavaScript and as well as being a feature that provides a smooth user experience it will also prevent empty comments being submitted when the JavaScript code on the front-end makes a POST request to the server with text string for that comment.
+- On forms such as those for logging in, registering with the site, reporting a bug or creating a new feature request, the first field will be automatically focussed so the user can immediately begin typing.
 
 ## Features
 
@@ -68,7 +109,15 @@ Languages, frameworks, libraries, and any other tools used to construct this pro
 
 ## Testing
 
+This project was developed incrementally with regular use of `console.log` statements in JavaScript and the `print()` function in Python to repeatedly check the changes made in the application and to ensure all changes to source code were providing the desired outcome in the browser. The site was build using Google Chrome browser (version 76) and then later tested in other browsers; FireFox (version 67) and Edge (version 42).
+
+This project was tested for responsiveness using the Chrome Developer Tools mobile device simulator. It was also viewed on physical Samsung Galaxy A5 (2017) mobile device to ensure good responsive behaviour. The site was also tested in Mozilla Firefox (version 67) and Microsoft Edge (version 42) browsers to ensure appearance and functionality of the site was as expected across all 3 of these browsers.
+
+
+
 ...
+
+Continuous Integration testing was done on each code push to the main project repo using [Travis-CI](https://travis-ci.org/). The current build status can also be seen on the badge at the top of this README document.
 
 
 ## Deployment
@@ -127,6 +176,7 @@ Aside from the Code Institute course content I found the following resources to 
 - The Django tutorial by The Net Ninja on YouTube was very helpful as an additional resource for learning the basics of Django, the playlist for which can be found [here](https://www.youtube.com/playlist?list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc)
 - The official Django documentation, found [here](https://docs.djangoproject.com/en/2.2/)
 - The [Chart.js official documentation](https://www.chartjs.org/docs/latest/) and the ['Getting Started with Chart.js'](https://www.youtube.com/watch?v=sE08f4iuOhA) video tutorial on YouTube by Traversy Media were great for getting up and running quickly with Chart.js
+- The JavaScript code to retrieve the CSRF token from a cookie in order to make POST requests to the back-end was based on responses to a question raised on StackOverflow [here](https://stackoverflow.com/questions/55864156/how-can-i-solve-csrf-verification-failed)
 - The [Yeti theme](https://bootswatch.com/yeti/) from Bootswatch was used with Bootstrap for development of the UI
 - Finally, thank you to my mentor Aaron Sinnott for his advice and guidance throughout the project
 
