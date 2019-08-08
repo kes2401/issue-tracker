@@ -100,11 +100,16 @@ if development:
     }
 else:
     DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL')),
-        'TEST': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': dj_database_url.parse(os.environ.get('DATABASE_URL')),
+            'TEST': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+                'TEMPLATE': 'DEFAULT',
+            },
         }
+        
     }
 
 # Password validation
@@ -170,6 +175,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme': 'simple',
     'content_style': '.mcecontentbody{font-size:1rem;}',
     'width': '100%',
+    'TINYMCE_JS_URL': os.path.join(STATIC_URL, "tiny_mce/tiny_mce.js")
 }
 
 STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
