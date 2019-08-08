@@ -94,6 +94,12 @@ def checkout(request):
             messages.error(request, 'We were unable to take a payment with that card.')
             cart = Cart.objects.all().filter(user=request.user)
 
+        cart = Cart.objects.filter(user=request.user)
+        cart_count = Cart.objects.filter(user=request.user).count()
+        cart_total = 0
+        for item in cart:
+            cart_total += item.amount
+            
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()

@@ -113,6 +113,19 @@ This project was developed incrementally with regular use of `console.log` state
 
 This project was tested for responsiveness using the Chrome Developer Tools mobile device simulator. It was also viewed on physical Samsung Galaxy A5 (2017) mobile device to ensure good responsive behaviour. The site was also tested in Mozilla Firefox (version 67) and Microsoft Edge (version 42) browsers to ensure appearance and functionality of the site was as expected across all 3 of these browsers.
 
+...
+
+
+The application was extensively tested by writing 46 unit tests within the Django testing framework. Using the `coverage` package the application was tested again and confirmed 90% test coverage. The output of this test can be seen below:
+
+![test coverage](test/coverage_results.jpg)
+
+The output of this coverage report can also be accessed in the HTML report format [here](test/coverage_results.html)
+
+These files for the coverage report can also be found in the 'test_results' folder in the project repo.
+
+
+
 
 
 ...

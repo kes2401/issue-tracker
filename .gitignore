@@ -5,3 +5,4 @@ env.py
 issue_tracker_env/
 .vscode
 credentials.csv
+htmlcov/
