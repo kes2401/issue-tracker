@@ -120,7 +120,7 @@ The application was extensively tested by writing 46 unit tests within the Djang
 
 ![test coverage](test_results/coverage_results.jpg)
 
-The output of this coverage report can also be accessed in the HTML report format [here](test_results/htmlcoverageresults/index.html)
+The output of this coverage report can also be accessed in the HTML report format [here](https://htmlpreview.github.io/?https://github.com/kes2401/issue-tracker/blob/master/test_results/htmlcoverageresults/index.html)
 
 These files for the coverage report can also be found in the 'test_results' folder in the project repo.
 
