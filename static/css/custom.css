@@ -109,8 +109,12 @@ label, .control-label {
     font-size: 1rem;
 }
 
-.fa-cc-stripe {
-    font-size: 2.4rem;
+.fa-stripe {
+    font-size: 2.2rem;
+}
+
+.powered-by-text {
+    font-size: 0.7rem;
 }
 
 /* TinyMCE custom style  */

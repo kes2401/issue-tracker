@@ -107,13 +107,13 @@
                             </div>
                             <div class="w-100">
                                 <div class="row">
-                                    <div class="col-3 col-md-4">
+                                    <div class="col-4 col-md-4">
                                         {{ payment_form.cvv }}
                                     </div>
-                                    <div class="col-9 col-md-8">
-                                        <label for="expiry_month">Expiry Date:</label>
-                                        {{ payment_form.expiry_month }}
-                                        {{ payment_form.expiry_year }}
+                                    <div class="col-8 d-flex justify-content-end">
+                                        <label for="expiry_month" class="mr-3">Expiry Date:</label>
+                                        <div>{{ payment_form.expiry_month }}</div>
+                                        <div class="ml-3">{{ payment_form.expiry_year }}</div>
                                     </div>
                                     <div>
                                         {{ payment_form.stripe_id }}
@@ -121,20 +121,28 @@
                                 </div>
                             </div>
 
-
-
                         </div>
                         {% if cart|length > 0 %}
-                        <div class="d-flex align-items-center button-container">
-                            <i class="fab fa-cc-stripe text-info mr-3"></i>
-                            <input type="submit" id="submit_payment_btn" name="commit" value="Pay Now"
-                                class="btn btn-success my-3"></input>
+                        <div class="d-flex justify-content-end">
+                            <div>
+                                <input type="submit" id="submit_payment_btn" name="commit" value="Pay Now"
+                                    class="btn btn-success my-3"></input>
+                                <div class="text-info mr-5 powered-by-text">
+                                    <div><em>Powered by</em></div>
+                                    <i class="fab fa-stripe"></i>
+                                </div>
+                            </div>
                         </div>
                         {% else %}
-                        <div class="d-flex align-items-center button-container">
-                            <i class="fab fa-cc-stripe text-info mr-3"></i>
-                            <button class="btn btn-success my-3 disabled" data-toggle="tooltip" data-placement="top"
-                                title="Your cart is empty">Pay Now</button>
+                        <div class="d-flex justify-content-end">
+                            <div>
+                                <button class="btn btn-success my-3 disabled" data-toggle="tooltip" data-placement="top"
+                                    title="Your cart is empty">Pay Now</button>
+                                <div class="text-info mr-5 powered-by-text">
+                                    <div><em>Powered by</em></div>
+                                    <i class="fab fa-stripe"></i>
+                                </div>
+                            </div>
                         </div>
                         {% endif %}
                     </form>
