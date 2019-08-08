@@ -52,8 +52,8 @@
                 <span class="badge badge-info badge-pill issue-badge-pill">Closed</span>
                 {% endif %}
                 <hr>
-                <div class="d-flex">
-                    <div class="col-12 col-md-6 pl-5">
+                <div class="d-md-flex">
+                    <div class="col-12 col-md-6 pl-md-5">
                         {% if issue.status == 'closed' %}
                         <a class="disabled"><i class="far fa-thumbs-up fa-2x text-muted"></i></a>
                         {% elif not user.is_authenticated %}
@@ -114,10 +114,11 @@
                     </div>
                     <div class="col-12 col-md-6">
                         {% if issue.issue_type == 'bug' %}
-                        <p class="text-muted text-right mb-0">Reported by {{ issue.author }} on {{ issue.date_created }}
+                        <p class="text-muted text-right mb-0 mt-3 mt-md-0">Reported by {{ issue.author }} on
+                            {{ issue.date_created }}
                         </p>
                         {% else %}
-                        <p class="text-muted text-right mb-0">Requested by {{ issue.author }} on
+                        <p class="text-muted text-right mb-0 mt-3 mt-md-0">Requested by {{ issue.author }} on
                             {{ issue.date_created }}</p>
                         {% endif %}
                     </div>
