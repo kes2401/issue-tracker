@@ -16,7 +16,7 @@
             <h4 class="xs-center"><strong>Profile Details</strong></h4>
             <p>Username: <span class="text-muted">{{ user.username }}</span></p>
             <p>Email: <span class="text-muted">{{ user.email }}</span></p>
-            <p>Password: <span class="text-muted">********</span> <span><a href="#"
+            <p>Password: <span class="text-muted">********</span> <span><a href="{% url 'password_reset' %}"
                         class="btn btn-sm btn-success mx-2 mt-2 mt-md-0">Change
                         Password</a></span></p>
         </div>
