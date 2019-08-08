@@ -118,9 +118,9 @@ This project was tested for responsiveness using the Chrome Developer Tools mobi
 
 The application was extensively tested by writing 46 unit tests within the Django testing framework. Using the `coverage` package the application was tested again and confirmed 90% test coverage. The output of this test can be seen below:
 
-![test coverage](test/coverage_results.jpg)
+![test coverage](test_results/coverage_results.jpg)
 
-The output of this coverage report can also be accessed in the HTML report format [here](test/coverage_results.html)
+The output of this coverage report can also be accessed in the HTML report format [here](test_results/htmlcoverageresults/index.html)
 
 These files for the coverage report can also be found in the 'test_results' folder in the project repo.
 
