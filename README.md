@@ -64,19 +64,22 @@ This site was built on the basis of ideas from initial wireframes created in [Pe
 - The comment field and the button to submit a new comment on the issue detail page will both be disabled when no user is logged in, or when an issue has already been closed. When a user is authenticated and the first is first loaded the comment input field will be active but the comment submit button will be disabled. When a user begins to type in the comment field the submit button will become active as long as there is at least one character typed into the comment input field. The state of the button is managed and updated by some front-end JavaScript and as well as being a feature that provides a smooth user experience it will also prevent empty comments being submitted when the JavaScript code on the front-end makes a POST request to the server with text string for that comment.
 - On forms such as those for logging in, registering with the site, reporting a bug or creating a new feature request, the first field will be automatically focussed so the user can immediately begin typing.
 
+
 ## Features
 
 ##### Existing Features
 
-- Feature 1 - ...
-- Feature 2 - ...
-- Feature 3 - ...
+- Feature 1 - The bug ticketing system provided through the Tracker page of the application allows user view lists of reported bugs and potential new features requested by users. These lists display badges representing the present status of the issue so that users can track if an issue is pending, in progress or closed. Each of these lists can be filtered and sorted in various forms too. Buttons on each end provide functionality for authenticated user to register new bugs or feature requests. All issues can be upvoted by other users and all authenticated users can also interact on all open issues through a commenting system.
+- Feature 2 - There is a Stats page providing statistical graphs and charts based on data within the site. This page shows users the current developer time allocation between fixing bugs and developing new features as well as charts depicting the progress of issue closures, the top voted bugs and features and also the present status of all issues registered in the application.
+- Feature 3 - There is a cart and checkout system built into the site to allow payment processing for feature upvotes and new feature requests. These provide clean and simple interfaces to make things easy for users to process orders on the site. It also provides the flexibility to allow a user choose the amount they wish to pay on each item in an order. Payment services are provided by Stripe.
+- Feature 4 - All authenticated user's have their own profile page providing basic account information like their username, email address, the date they first registered on the site and the date and time of last login. A button is also provided to allow a user to reset their password. This profile dashboard also provides a list of bugs reported on the site, new features requested and votes on new features, where the latter two of these three elements provide records of the amounts paid for each order item along with links to the relevant issues in the tracker.
 
 ##### Future Features
 
-- Feature 1 - ...
-- Feature 2 - ...
-- Feature 3 - ...
+- Feature 1 - The tracker page which shows lists of all reported bugs and new feature requests will be fine to list moderate numbers of issues logged on the application. However, if the application was to grow with more users reporting a greater volume of issues then it may be necessary to implement some pagination feature on each of the two lists so that neither list grows too long that it negatively impacts user experience.
+- Feature 2 - While the current Profile page shows, aside from a list of bugs reported, lists of both new feature requests and feature upvotes, both of which require payment, a user can see where they have made payments towards such issues. However, it might improve user experience further by building a more detailed order history providing transaction dates and perhaps other relevant information to each transaction, as well as building it out further to provide order receipts by email to users after they make transactions on the site.
+- Feature 3 - An extended Profile page could also provide more information on a user's interaction on the application by providing logs of bugs they have also upvotes on that did not require payment, as well as perhaps a more social element where users could connect with and follow other user's perhaps because they build a relationship through issue commenting features or because they want to keep tracker of another user's innovative feature ideas or proactive bug reporting. Though this final idea may only be really feasible if the site grew to have a large number of active users.
+- Feature 4 - Additional and more advanced options for editing and perhaps deletion of bug reports, new feature requests and comments on any of these issues.
 
 
 ## Technologies Used
@@ -113,8 +116,6 @@ This project was developed incrementally with regular use of `console.log` state
 
 This project was tested for responsiveness using the Chrome Developer Tools mobile device simulator. It was also viewed on physical Samsung Galaxy A5 (2017) mobile device to ensure good responsive behaviour. The site was also tested in Mozilla Firefox (version 67) and Microsoft Edge (version 42) browsers to ensure appearance and functionality of the site was as expected across all 3 of these browsers.
 
-...
-
 
 The application was extensively tested by writing 46 unit tests within the Django testing framework. Using the `coverage` package the application was tested again and confirmed 90% test coverage. The output of this test can be seen below:
 
@@ -124,11 +125,15 @@ The output of this coverage report can also be accessed in the HTML report forma
 
 These files for the coverage report can also be found in the 'test_results' folder in the project repo.
 
+The site was also audited with Chrome Dev Tools' Lighthouse, with no throttling, and the results were good and were as follows on the audit report:
 
+| Performance | Accessibility | Best Practices | SEO |
+| :---------: | :------------:|:--------------:|:---:|
+| 100         | 95            | 86             | 100 |
 
+(_Progressive Web App audit scoring has been removed as the site was not intended to operate as a PWA_.)
 
-
-...
+All the JavaScript code written in this application does not explicitly return any values as such and for the most part simply completes operations for manipulating the DOM or providing UI effect and features. This is primarily done using functions provided by the jQuery library as well as some functions provided with the Bootstrap framework, and on that basis I have not written unit tests to test any functions in the application as they are predominantly provided by external libraries which I trust have already been thoroughly tested by the developers and maintainers of those libraries.
 
 Continuous Integration testing was done on each code push to the main project repo using [Travis-CI](https://travis-ci.org/). The current build status can also be seen on the badge at the top of this README document.
 
