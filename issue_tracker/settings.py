@@ -162,12 +162,20 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-TINYMCE_DEFAULT_CONFIG = {
-    'theme': 'simple',
-    'content_style': '.mcecontentbody{font-size:1rem;}',
-    'width': '100%',
-    'TINYMCE_JS_URL': os.path.join(BASE_DIR, 'static/tiny_mce/tiny_mce.js')
-}
+if development:
+    TINYMCE_DEFAULT_CONFIG = {
+        'theme': 'simple',
+        'content_style': '.mcecontentbody{font-size:1rem;}',
+        'width': '100%',
+        'TINYMCE_JS_URL': os.path.join(BASE_DIR, 'static/tiny_mce/tiny_mce.js')
+    }
+else:
+    TINYMCE_DEFAULT_CONFIG = {
+        'theme': 'simple',
+        'content_style': '.mcecontentbody{font-size:1rem;}',
+        'width': '100%',
+        'TINYMCE_JS_URL': os.path.join(AWS_S3_CUSTOM_DOMAIN, 'tiny_mce/tiny_mce.js')
+    }
 
 STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
 STRIPE_SECRET = os.environ.get('STRIPE_SECRET')
